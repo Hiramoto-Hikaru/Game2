@@ -18,10 +18,9 @@ CPlayer::CPlayer()
 	, mLine2(this, &mMatrix, CVector(0.0f, 12.0f, -4.0f), CVector(0.0f, 6.0f, -4.0f))  //上下の線分コライダ
 	, mLine3(this, &mMatrix, CVector(7.0f, 9.0f, -4.0f), CVector(-7.0f, 9.0f, -4.0f))  //左右の線分コライダ
 	,mCollider(this,&mMatrix,CVector(0.0f,9.0f,0.0f),0.1f)
-	,mRotationCount1(30)
-    ,mRotationCount2(0)
-    ,mRotationCount3(0)
-    ,mRotationCount4(0)
+	,mRotationCount(0)
+	,mRotationCount2(120)
+   
 	, mStamina(200)
 {
 //テクスチャファイルの読み込み(１行６４列）
@@ -52,15 +51,16 @@ void CPlayer::Update() {
 	
 	//前進
 	 if (CKey::Push('I')) {
-		if (mRotationCount1 <= 30) {
+
+		if (mRotationCount >= 0) {
         //Y軸の回転値を増加
 		mRotation.mY += 3;
-		mRotationCount1 += 1;
+		mRotationCount --;
 		}
-		else if (mRotationCount1 >= 30) {
+		else if (mRotationCount2 <= 120) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
-			mRotationCount1 -= 1;
+			mRotationCount2 ++;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -76,15 +76,15 @@ void CPlayer::Update() {
 	}
 	//後退
 	else if (CKey::Push('K')) {
-		if (mRotationCount2 <= 30) {
-			//Y軸の回転値を増加
-			mRotation.mY += 3;
-			mRotationCount2 += 1;
-		}
-		else if (mRotationCount2 >= 30) {
+		if (mRotationCount>=60 ) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
-			mRotationCount2 -= 1;
+			mRotationCount --;
+		}
+		else if (mRotationCount2 <= 60) {
+			//Y軸の回転値を増加
+			mRotation.mY += 3;
+			mRotationCount2 ++;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -99,17 +99,16 @@ void CPlayer::Update() {
 	//左折
 	else if (CKey::Push('J')) {
 		 //右を向いているときに左に回転させる
-		if (mRotationCount3 <= 30 - mRotationCount4) {
-			//Y軸の回転値を増加
-			mRotation.mY += 3;
-			mRotationCount3 += 1;
-			mRotationCount4 += 1;
-		}
-		else if (mRotationCount3 >= 30 + mRotationCount4) {
+		if (mRotationCount >=90) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
-			mRotationCount3 -= 1;
-			mRotationCount4 -= 1;
+			mRotationCount --;
+			
+		}
+		else if (mRotationCount2<=90) {
+			//Y軸の回転値を増加
+			mRotation.mY -= 3;
+			mRotationCount2 --;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -125,17 +124,15 @@ void CPlayer::Update() {
 	}
 	//右折
 	else if (CKey::Push('L')) {
-		if (mRotationCount4 <= 30- mRotationCount3) {
+		if (mRotationCount <= 30) {
 			//Y軸の回転値を増加
 			mRotation.mY += 3;
-			mRotationCount4 += 1;
-			mRotationCount3 += 1;
+			mRotationCount ++;
 		}
-		else if (mRotationCount4 >= 30+ mRotationCount3) {
+		else if (mRotationCount2 >= 30) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
-			mRotationCount4 -= 1;
-			mRotationCount3 -= 1;
+			mRotationCount2 --;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -146,10 +143,13 @@ void CPlayer::Update() {
         //X軸方向に-１進んだ値を回転移動させる
 		mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 		}
-		
-
 	}
-
+	 if (mRotationCount >= 120) {
+		 mRotationCount = 0;
+	 }
+	 if (mRotationCount2 <=0) {
+		 mRotationCount = 120;
+	 }
     //左向き
 	 if (CKey::Push('A')) {
 		//Y軸の回転値を増加
@@ -170,8 +170,6 @@ void CPlayer::Update() {
 		//X軸の回転値を加算
 		mRotation2.mX += 3;
 	}
-
-
 	//CCharacterの更新
 	CTransform::Update();
 }	
@@ -232,7 +230,11 @@ void CPlayer::Render() {
 	//Y軸回転値の表示
 	//文字列の設定
 	sprintf(buf, "RY:%7.2f", mRotation2.mY);
+	//mText.DrawString(buf, 100, -100, 8, 16);
+	//文字列の設定
+	sprintf(buf, "%10d", mRotationCount);
 	mText.DrawString(buf, 100, -100, 8, 16);
+
 	//2Dの描画終了
 	CUtil::End2D();
 

@@ -21,10 +21,9 @@ public:
     CText mText;
     void Render();
     CCollider mCollider;//本体用コライダ
-    int mRotationCount1;
+    int mRotationCount;
     int mRotationCount2;
-    int mRotationCount3;
-    int mRotationCount4;
+   
     int mStamina;
 };
 #endif
