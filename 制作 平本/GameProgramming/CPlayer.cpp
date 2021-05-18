@@ -53,11 +53,12 @@ void CPlayer::Update() {
 	 if (CKey::Push('I')) {
 
 		if (mRotationCount >= 0) {
+			
         //Y軸の回転値を増加
 		mRotation.mY += 3;
 		mRotationCount --;
 		}
-		else if (mRotationCount2 <= 120) {
+		else if (mRotationCount2 <= 0) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
 			mRotationCount2 ++;
@@ -76,12 +77,13 @@ void CPlayer::Update() {
 	}
 	//後退
 	else if (CKey::Push('K')) {
-		if (mRotationCount>=60 ) {
+		if (mRotationCount>=180 ) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
 			mRotationCount --;
+			mRotationCount2;
 		}
-		else if (mRotationCount2 <= 60) {
+		else if (mRotationCount2 <= 180) {
 			//Y軸の回転値を増加
 			mRotation.mY += 3;
 			mRotationCount2 ++;
@@ -99,16 +101,17 @@ void CPlayer::Update() {
 	//左折
 	else if (CKey::Push('J')) {
 		 //右を向いているときに左に回転させる
-		if (mRotationCount >=90) {
+		if (mRotationCount >=270) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
 			mRotationCount --;
+			mRotationCount2--;
 			
 		}
-		else if (mRotationCount2<=90) {
+		else if (mRotationCount2<=270) {
 			//Y軸の回転値を増加
-			mRotation.mY -= 3;
-			mRotationCount2 --;
+			mRotation.mY += 3;
+			mRotationCount2 ++;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -124,15 +127,16 @@ void CPlayer::Update() {
 	}
 	//右折
 	else if (CKey::Push('L')) {
-		if (mRotationCount <= 30) {
+		if (mRotationCount <= 90) {
 			//Y軸の回転値を増加
 			mRotation.mY += 3;
-			mRotationCount ++;
+			mRotationCount +=3;
+			
 		}
-		else if (mRotationCount2 >= 30) {
+		else if (mRotationCount2 >= 90) {
 			//Y軸の回転値を増加
 			mRotation.mY -= 3;
-			mRotationCount2 --;
+			mRotationCount2 -=3;
 		}
 		if (CKey::Push('C')) {
 			//X軸方向に-１進んだ値を回転移動させる
@@ -144,10 +148,10 @@ void CPlayer::Update() {
 		mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 		}
 	}
-	 if (mRotationCount >= 120) {
+	 if (mRotationCount >= 360) {
 		 mRotationCount = 0;
 	 }
-	 if (mRotationCount2 <=0) {
+	 if (mRotationCount2 <=360) {
 		 mRotationCount = 120;
 	 }
     //左向き

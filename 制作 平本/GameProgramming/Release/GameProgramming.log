@@ -1,9 +1,0 @@
-﻿  CSceneGame.cpp
-C:\Users\hiram\OneDrive\デスクトップ\ゲーム制作２\3DLv1_00_2020 41\GameProgramming\CTriangle.h(1,1): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
-Release\CCharacter.obj : warning LNK4042: オブジェクトの指定が重複しています。余分なものは無視されます。
-  コード生成しています。
-  1 of 332 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
-  コード生成が終了しました。
-  GameProgramming.vcxproj -> C:\Users\hiram\OneDrive\デスクトップ\ゲーム制作２\3DLv1_00_2020 41\Release\GameProgramming.exe
