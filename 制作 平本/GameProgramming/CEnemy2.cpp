@@ -39,8 +39,8 @@ CEnemy2::CEnemy2(const CVector& position, const CVector& rotation, const CVector
 	mScale = scale;//拡縮の設定
 	CTransform::Update();//行列の更新
 	//目標地点の設定
-	mPoint = mPosition + CVector(0.0f, 0.0f, 100.0f) * mMatrixRotate;
-
+	mPoint =mPosition + CVector(0.0f, 0.0f, 30.0f) * mMatrixRotate;
+ 
 	//優先度を１に変更する
 	mPriority = 1;
 	CTaskManager::Get()->Remove(this);//削除して
@@ -64,14 +64,15 @@ void CEnemy2::Update() {
 		float dy = vp.Dot(vy);
 		float dz = vp.Dot(vz);
 		//X軸の-2～2の範囲に接触
-		if (-2.0f < dx && dx< 2.0f) {
+		
 				//Y軸の-2～2の範囲に接触
-			if (-2.0f < dy && dy < 2.0f) {
+			if (-10.0f < dy && dy < 10.0f) {
 				//位置を移動(Z軸方向に0.9ずつ移動）
 				mPosition = CVector(0.0f, 0.0f, 0.9f) * mMatrix;
 
 				//Z軸の0.0以上の範囲に接触
 				if (0.0f <= dz) {
+
                 //弾を発射
 
 				/*CBullet* bullet = new CBullet();
@@ -83,14 +84,13 @@ void CEnemy2::Update() {
 				
 			}
 
-		}
+		
 
 	}
 	//目標地点までのベクトルを求める
 	CVector vp = mPoint - mPosition;
 	//左ベクトルとの内積を求める
 	float dx = vp.Dot(vx);
-
 	//上ベクトルとの内積を求める
 	float dy = vp.Dot(vy);
 	float margin = 0.1f;
@@ -114,7 +114,7 @@ void CEnemy2::Update() {
 	CTransform::Update();//行列更新
 
 
-	int r = rand() % 60; //rand()は整数の乱数を返す
+	int r = rand() % 20; //rand()は整数の乱数を返す
 	                     //%180は１８０で割った余りを求める
 	if (r == 0) {
 		if (mpPlayer) {
@@ -139,8 +139,6 @@ void CEnemy2::Update() {
 		CTransform::Update();
 		return;
 	}
-//下降させる
-		mPosition.mY -= 0.03f;
 
 }
 //Collision(コライダ１，コライダ２，）

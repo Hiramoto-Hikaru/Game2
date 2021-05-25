@@ -23,7 +23,8 @@ public:
     CCollider mCollider;//本体用コライダ
     int mRotationCount;
     int mRotationCount2;
-   
+    int mRotationCount3;
+    int mRotationCount4;
     int mStamina;
 };
 #endif

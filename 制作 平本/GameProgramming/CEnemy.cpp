@@ -28,7 +28,7 @@ CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
 	mPriority = 1;
 	CTaskManager::Get()->Remove(this);//削除して
 	CTaskManager::Get()->Add(this);//追加する
-	mPoint = mPosition + CVector(0.0f, 0.0f, 100.0f) * mMatrixRotate;
+	mPoint = mPosition + CVector(0.0f, 0.0f, 30.0f) * mMatrixRotate;
 	CTransform::Update();//行列の更新
 
 }
@@ -38,7 +38,7 @@ void CEnemy::Update() {
 	//上向き（Y軸）のベクトルを求める
 	CVector vy = CVector(0.0f, 1.0f, 0.0f) * mMatrixRotate;
 	//前方向（Z軸）のベクトルを求める
-	CVector vz = CVector(0.0f, 0.0f, 5.0f) * mMatrixRotate;
+	CVector vz = CVector(0.0f, 0.0f, 1.0f) * mMatrixRotate;
 	//プレイヤーのポインタが０以外のとき
 	if (mpPlayer) {
 		//プレイヤーまでのベクトルを求める
@@ -71,6 +71,11 @@ void CEnemy::Update() {
 			}
 
 		}
+		else {
+			//移動する
+			mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
+
+		}
 
 	}
 	if (mFireCount >= 0) {
@@ -99,19 +104,17 @@ void CEnemy::Update() {
 	else if (dy < -margin) {
 		mRotation.mX += 5.0f;//下へ回転
 	}*/
-	//移動する
-	mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
 	
     //行列を更新
 	CTransform:: Update();
-	int r = rand() % 60; //rand()は整数の乱数を返す
+	int r = rand() % 20; //rand()は整数の乱数を返す
 						 //%180は１８０で割った余りを求める
 	if (r == 0) {
 		if (mpPlayer) {
 			mPoint = mpPlayer->mPosition;
 		}
 		else {
-			mPoint = mPoint * CMatrix().RotateY(90);
+			mPoint = mPoint * CMatrix().RotateY(30);
 		}
 	}
 	mpPlayer = 0;
@@ -126,7 +129,7 @@ void CEnemy::Update() {
 		return;
 	}
 	//位置を移動(Z軸方向に0.9ずつ移動）
-	mPosition = CVector(0.0f, 0.0f, 0.9f) * mMatrix;
+	//mPosition = CVector(0.0f, 0.0f, 0.9f) * mMatrix;
 }
 void CEnemy::Collision(CCollider* m, CCollider* o) {
 	//相手がサーチのときは戻る

@@ -112,6 +112,7 @@
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CUtil.cpp" />
     <ClCompile Include="CVector.cpp" />
+    <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CUtil.h" />
     <ClInclude Include="CVector.h" />
+    <ClInclude Include="CWeapon.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="CMaterial.h" />
   </ItemGroup>

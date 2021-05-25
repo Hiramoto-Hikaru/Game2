@@ -50,12 +50,12 @@ void CSceneGame::Init() {
   
    //敵の生成
    new CEnemy(&mModelc5,
-       CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+       CVector(-5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-   new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+   new CEnemy2(CVector(-5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(0.1f, 0.1f, 0.1f));
-   new CEnemy2(CVector(5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+   new CEnemy2(CVector(5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(0.1f, 0.1f, 0.1f));
 
    //ビルボードの生成
@@ -146,7 +146,7 @@ void CSceneGame::Update() {
     //CVectorをつけないと何の座標かわからない
     //mPlayerをつける
     //CMatrix().RotateY(Camera.mRotation.mY)
-    e = mPlayer.mPosition+ CVector(-2.0f, 5.0f, -10.0f) * mPlayer.mMatrixRotate2;
+    e = mPlayer.mPosition+ CVector(0.0f, 5.0f, 10.0f) * mPlayer.mMatrixRotate2;
     //注視点（位置座標）
     c = mPlayer.mPosition;
     //上方向（回転行列*座標）
