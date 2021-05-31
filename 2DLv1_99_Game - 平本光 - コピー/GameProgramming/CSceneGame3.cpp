@@ -32,7 +32,7 @@ void CSceneGame3::Init() {
 	//シーンの設定
 	mScene = EGAME3;
 	//サウンドファイル（wav）の読み込み
-	Bgm.Load("mario.wav");
+	Bgm.Load("BGM.wav");
 	Se.Load("jump.wav");
 	//サウンドファイルの繰り返し再生
 	Bgm.Repeat();

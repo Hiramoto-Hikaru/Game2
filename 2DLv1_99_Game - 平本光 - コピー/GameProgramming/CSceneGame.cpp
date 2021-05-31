@@ -31,7 +31,7 @@ int CSceneGame::mZanki = 3;
 
 void CSceneGame::Init() {
 	//サウンドファイル（wav）の読み込み
-	Bgm.Load("mario.wav");
+	Bgm.Load("BGM.wav");
 	Se.Load("jump.wav");
 	Se2.Load("laser02.wav");
 	Se3.Load("powerup01.wav");
