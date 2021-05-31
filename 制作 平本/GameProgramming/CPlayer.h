@@ -6,6 +6,7 @@
 #include"CBullet.h"
 #include"CText.h"
 #include"CText.h"
+class CWeapon;
 class CPlayer : public CCharacter {
 public:
 
@@ -13,7 +14,9 @@ public:
     CColliderLine mLine;//線分コライダ
     CColliderLine mLine2;//線分コライダ
     CColliderLine mLine3;//線分コライダ
+
     CBullet bullet();
+   
     void Update();
    //衝突処理
     void Collision(CCollider* m, CCollider* o);
@@ -26,6 +29,9 @@ public:
     int mRotationCount3;
     int mRotationCount4;
     int mStamina;
+    int mSpaceCount;
+    int mCount;
+    CWeapon* Weapon;
 };
 #endif
   

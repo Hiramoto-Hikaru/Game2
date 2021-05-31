@@ -1,17 +1,103 @@
-﻿  CSCENEGame2.cpp
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(233,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(243,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(245,25): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(285,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(305,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(309,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(313,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(317,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(324,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(326,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(370,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  GameProgramming.vcxproj -> C:\Users\hiram\OneDrive\デスクトップ\2DLv1_99_Game - 平本光 - コピー\Debug\GameProgramming.exe
+﻿  CBoss.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CBoss2.cpp
+  CBullet.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CButton.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CCoin.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CDeathBlock.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CDisappear.cpp
+  CDisappear2.cpp
+  CDoor.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CDoor2.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CEnemy.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CEnemy2.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CEnemy3.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CEnemy3.cpp(88,3): warning C4060: switch ステートメントに 'case' または 'default' ラベルがありません。
+  CEnemy4.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CEnemy4.cpp(35,7): warning C4553: '==': 式の結果が使用されていません。'=' を意図していますか?
+  CEnemyBullet.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CEnemyBullet2.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CItem.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CObject.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CSceneClear.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+  CSCENEGame2.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(233,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(243,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(245,25): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(285,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(305,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(309,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(313,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(317,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(324,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(326,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSCENEGame2.cpp(370,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  コードを生成中...
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CDoor.cpp : fatal error C1090: PDB API の呼び出しに失敗しました。エラー コード '3': C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\Debug\vc142.pdb

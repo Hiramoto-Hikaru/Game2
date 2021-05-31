@@ -11,6 +11,7 @@
 #include"CTask.h"
 #include"CUtil.h"
 #include"CText.h"
+#include"CWeapon.h"
 CMatrix Matrix;
 CPlayer::CPlayer()
 //線分コライダの設定（親、親行列、頂点１、頂点２）
@@ -19,10 +20,10 @@ CPlayer::CPlayer()
 	, mLine3(this, &mMatrix, CVector(7.0f, 9.0f, -4.0f), CVector(-7.0f, 9.0f, -4.0f))  //左右の線分コライダ
 	,mCollider(this,&mMatrix,CVector(0.0f,9.0f,0.0f),0.1f)
 	,mRotationCount(0)
-	,mRotationCount2(0)
-	,mRotationCount3(0)
-	,mRotationCount4(0)
-   
+	,mRotationCount2(1)
+	,mRotationCount3(1)
+	,mRotationCount4(1)
+	, mSpaceCount(0)
 	, mStamina(400)
 {
 //テクスチャファイルの読み込み(１行６４列）
@@ -32,9 +33,29 @@ mTag = EPLAYER;//タグの設定
 }
 void CPlayer::Update() {
 	
+
 	//スペースキー入力で弾発射
-	if (CKey::Push(VK_SPACE)) {
-		//Y軸の回転値を増加
+	if (CKey::Once(VK_SPACE)) {
+
+		
+		Weapon = new CWeapon();
+
+
+		if (mSpaceCount <= 0) {
+         mSpaceCount += 60;
+          Weapon->mAction1 += 60;
+      
+		}
+		else if (mSpaceCount > 0&& Weapon->mAction1>0) {
+			mSpaceCount += 60;
+			Weapon->mAction2 += 60;
+		}
+		else if (mSpaceCount > 0&& Weapon->mAction2 > 0) {
+			mSpaceCount += 60;
+			Weapon->mAction3 += 60;
+		}
+
+		/*//Y軸の回転値を増加
 		mRotation.mY += 50;
 		//CBulletをbulletに変換
 		CBullet* bullet = new CBullet();
@@ -44,10 +65,14 @@ void CPlayer::Update() {
         bullet->mRotation = mRotation;
 		bullet->Update();
 		//弾クラスのインスタンスをタスクリストに追加
-		//TaskManager.Add(bullet);
+		//TaskManager.Add(bullet);*/
 
 	}
-	if (mStamina <= 200) {
+	if (mSpaceCount > 0) {
+		mSpaceCount--;
+	}
+	
+	if (mStamina <= 400) {
     mStamina++;
 	}
 	
