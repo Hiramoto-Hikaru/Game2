@@ -341,7 +341,7 @@ void CSceneGame2::Update() {
 
 
 	}
-	if (CSceneGame::Life > 0 && CSceneGame::Treasure ==0) {
+	if (CSceneGame::Life > 0 && CSceneGame::Treasure ==4) {
 		CText::DrawString("STAGE2 CLEAR", -350, 0, 30, 30);
 		CText::DrawString("Push ENTER Key", -200, -100, 16, 16);
 		if (CKey::Once(VK_RETURN)) {

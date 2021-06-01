@@ -5,7 +5,7 @@ bool CKey::Flg[256];	//true:押し中　false:押されていない
 //keyが押された瞬間だけtrueを返す
 bool CKey::Once(char key) {
 	//キーが押されているか
-	if ((GetKeyState(key) & 0x8000)) {
+	if ((GetAsyncKeyState(key) & 0x8000)) {
 		//!演算子：否定
 		//押し中か判定
 		if (!Flg[key]) {
