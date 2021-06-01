@@ -32,7 +32,7 @@ CWeapon::CWeapon()
 
 }
 void CWeapon::Update(){
-	mPosition = mpPlayer->mPosition;
+	//mPosition = mpPlayer->mPosition;
 
 		if (mAction1 > 0) {
 			mRotation.mX += 3.0f;

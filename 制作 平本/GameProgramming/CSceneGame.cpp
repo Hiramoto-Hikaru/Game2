@@ -20,7 +20,7 @@
 #include"CColliderMesh.h"
 #include"CEnemy2.h"
 #include"CWeapon.h"
-extern CSceneGame::mModelW;
+
 void CSceneGame::Init() {
     //初期化・・・あらかじめ値を代入しておくこと
     mEye = CVector(1.0f, 2.0f, 3.0f);//X軸、Y軸、Z軸の初期化（右斜め上）
@@ -45,6 +45,9 @@ void CSceneGame::Init() {
    //objとmtlの読み込み
    //C5モデルの読み込み
    mModelW.Load("Weapon.obj", "Weapon.mtl");
+   new CWeapon(&mModelW,
+       CVector(0.0f, 3.0f, 1.0f) * mBackGroundMatrix,
+       CVector(), CVector(1.0f, 1.0f, 1.0f));
    mModelc5.Load("Car.obj", "Car.mtl");
    //敵機のインスタンス作成
    //CEnemy（モデル、位置、回転、拡縮)

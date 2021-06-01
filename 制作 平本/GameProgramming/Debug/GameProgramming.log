@@ -1,10 +1,3 @@
-﻿  CPlayer.cpp
+﻿  CWeapon.cpp
 C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CTriangle.h(1,1): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
-C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CPlayer.cpp(269,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CPlayer.cpp(275,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CPlayer.cpp(281,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CPlayer.cpp(284,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  CWeapon.cpp
-C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\GameProgramming\CTriangle.h(1,1): warning C4067: プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
-  コードを生成中...
   GameProgramming.vcxproj -> C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\制作 平本\Debug\GameProgramming.exe
