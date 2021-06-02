@@ -1,1 +1,16 @@
-﻿  GameProgramming.vcxproj -> C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\Release\GameProgramming.exe
+﻿  CSceneGame3.cpp
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(71,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,50): warning C4101: 'cnt': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(105,24): warning C4101: 'state': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSound.h(106,87): warning C4101: 'dw': ローカル変数は 1 度も使われていません。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(176,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(186,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(188,25): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(228,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(247,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(251,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(255,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(259,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\GameProgramming\CSceneGame3.cpp(314,20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  LINK : /LTCG が指定されましたが、コードの生成は必要ありません。リンク コマンド ラインから /LTCG を削除し、リンカーの性能を改善してください。
+  GameProgramming.vcxproj -> C:\Users\hiram\OneDrive\デスクトップ\Git\Game2\2DLv1_99_Game - 平本光 - コピー\Release\GameProgramming.exe

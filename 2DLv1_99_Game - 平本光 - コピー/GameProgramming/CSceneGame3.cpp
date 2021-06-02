@@ -26,7 +26,7 @@
 
 void CSceneGame3::Init() {
 	//static変数にすれば、クラス外でも使用できる
-
+    CSceneGame::BossLife = 20;
 	CSceneGame::Treasure = 0;
 	CSceneGame2::Coin = 0;
 	//シーンの設定
