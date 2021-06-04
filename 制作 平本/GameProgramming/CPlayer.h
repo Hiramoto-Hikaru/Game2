@@ -15,7 +15,7 @@ public:
     CColliderLine mLine2;//線分コライダ
     CColliderLine mLine3;//線分コライダ
 
-    CBullet bullet();
+    //CBullet bullet();
    
     void Update();
    //衝突処理
@@ -24,6 +24,7 @@ public:
     CText mText;
     void Render();
     CCollider mCollider;//本体用コライダ
+    int mRotationCountFirst;
     int mRotationCount;
     int mRotationCount2;
     int mRotationCount3;

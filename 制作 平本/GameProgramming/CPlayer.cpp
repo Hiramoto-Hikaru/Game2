@@ -19,10 +19,11 @@ CPlayer::CPlayer()
 	, mLine2(this, &mMatrix, CVector(0.0f, 12.0f, -4.0f), CVector(0.0f, 6.0f, -4.0f))  //上下の線分コライダ
 	, mLine3(this, &mMatrix, CVector(7.0f, 9.0f, -4.0f), CVector(-7.0f, 9.0f, -4.0f))  //左右の線分コライダ
 	,mCollider(this,&mMatrix,CVector(0.0f,9.0f,0.0f),0.1f)
+	, mRotationCountFirst(1)
 	,mRotationCount(0)
-	,mRotationCount2(1)
-	,mRotationCount3(1)
-	,mRotationCount4(1)
+	,mRotationCount2(0)
+	,mRotationCount3(0)
+	,mRotationCount4(0)
 	, mSpaceCount(0)
 	, mStamina(400)
 {
@@ -80,6 +81,10 @@ void CPlayer::Update() {
 	 if (CKey::Push('I')) {
 		 if (mRotationCount <= 0) {
 			 mRotationCount += 1;
+			 if (mRotationCountFirst > 0) {
+				 mRotationCountFirst--;
+
+			 }
 		 }
 		 else if (mRotationCount2 > 0) {//右を向いていたとき
 			 mRotation.mY += 90;
@@ -112,8 +117,12 @@ void CPlayer::Update() {
 	else if (CKey::Push('K')) {
 		 if (mRotationCount3 <= 0) {
 			 mRotationCount3 += 1;
+			 if (mRotationCountFirst > 0) {
+				 mRotation.mY += 180;
+				 mRotationCountFirst--;
+			 }
 		 }
-		 if (mRotationCount2 > 0) {//右を向いていたとき
+		 else if (mRotationCount2 > 0) {//右を向いていたとき
 			 mRotation.mY -=90;
 			 mRotationCount2 -= 1;
 		 }
@@ -142,8 +151,12 @@ void CPlayer::Update() {
 	else if (CKey::Push('J')) {
 		 if (mRotationCount4 <= 0) {
 			 mRotationCount4 += 1;
+			 if (mRotationCountFirst > 0) {
+				 mRotation.mY += 90;
+				 mRotationCountFirst--;
+			 }
 		 }
-		 if (mRotationCount2 > 0) {//右を向いていたとき
+		 else if (mRotationCount2 > 0) {//右を向いていたとき
 			 mRotation.mY +=180;
 			 mRotationCount2 -= 1;
 		 }
@@ -173,8 +186,12 @@ void CPlayer::Update() {
 	else if (CKey::Push('L')) {
 		 if (mRotationCount2 <= 0) {
 			 mRotationCount2 += 1;
+			 if (mRotationCountFirst > 0) {
+				 mRotation.mY -= 90;
+				 mRotationCountFirst--;
+			 }
 		 }
-		 if (mRotationCount > 0) {//正面を向いていたとき
+		 else if (mRotationCount > 0) {//正面を向いていたとき
 			 mRotation.mY -= 90;
 			 mRotationCount -= 1;
 		 }

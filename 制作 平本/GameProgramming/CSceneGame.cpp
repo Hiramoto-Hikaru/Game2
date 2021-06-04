@@ -45,9 +45,9 @@ void CSceneGame::Init() {
    //objとmtlの読み込み
    //C5モデルの読み込み
    mModelW.Load("Weapon.obj", "Weapon.mtl");
-   new CWeapon(&mModelW,
+ /*  new CWeapon(&mModelW,
        CVector(0.0f, 3.0f, 1.0f) * mBackGroundMatrix,
-       CVector(), CVector(1.0f, 1.0f, 1.0f));
+       CVector(), CVector(1.0f, 1.0f, 1.0f));*/
    mModelc5.Load("Car.obj", "Car.mtl");
    //敵機のインスタンス作成
    //CEnemy（モデル、位置、回転、拡縮)
