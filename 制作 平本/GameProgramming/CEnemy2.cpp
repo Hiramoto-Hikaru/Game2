@@ -12,8 +12,8 @@ CModel CEnemy2::mModel;//モデルデータ作成
 //デフォルトコンストラクタ
 CEnemy2::CEnemy2()
 //コライダの設定
-	:mCollider(this,&mMatrix,CVector(0.0f,0.0f,0.0f),0.1f)
-	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,100.0f),30.0f)
+	:mCollider(this,&mMatrix,CVector(0.0f,0.0f,0.0f),1.0f)
+	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,100.0f),200.0f)
 	,mpPlayer(0)
 	,mHp(HP)
 

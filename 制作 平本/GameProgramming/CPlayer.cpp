@@ -39,9 +39,9 @@ void CPlayer::Update() {
 	if (CKey::Once(VK_SPACE)) {
 
 		
-		Weapon = new CWeapon();
+		//Weapon = new CWeapon();
 
-
+/*
 		if (mSpaceCount <= 0) {
          mSpaceCount += 60;
           Weapon->mAction1 += 60;
@@ -54,7 +54,7 @@ void CPlayer::Update() {
 		else if (mSpaceCount > 0&& Weapon->mAction2 > 0) {
 			mSpaceCount += 60;
 			Weapon->mAction3 += 60;
-		}
+		}*/
 
 		/*//Y²‚Ì‰ñ“]’l‚ğ‘‰Á
 		mRotation.mY += 50;
@@ -102,13 +102,18 @@ void CPlayer::Update() {
 			if (mStamina > 0) {
 				
 				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-				mPosition = CVector(0.0f, 0.0f, 3.0f) * mMatrix;
+				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+				mStamina -= 2;
+			}
+			else if (mStamina <= 2 || mStamina >= 0) {
+				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
+				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 				mStamina -= 2;
 			}
 		}
 		else {
 			//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-			mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 		}
 		
 		
@@ -137,13 +142,18 @@ void CPlayer::Update() {
 		if (CKey::Push('C')) {
 			if (mStamina > 0) {
 				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-				mPosition = CVector(0.0f, 0.0f, 3.0f) * mMatrix;
+				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+				mStamina -= 2;
+			}
+			else if (mStamina <= 2 || mStamina >= 0) {
+				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
+				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 				mStamina -= 2;
 			}
 		}
 		else {
 			//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-			mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 		}
 
 	}
@@ -171,13 +181,18 @@ void CPlayer::Update() {
 		if (CKey::Push('C')) {
 			if (mStamina > 0) {
 				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-				mPosition = CVector(0.0f, 0.0f, 3.0f) * mMatrix;
+				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+				mStamina -= 2;
+			}
+			else if (mStamina <= 2 || mStamina >= 0) {
+				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
+				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 				mStamina -= 2;
 			}
 		}
 		else {
 			//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-			mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 		}
 		
 
@@ -206,13 +221,18 @@ void CPlayer::Update() {
 		if (CKey::Push('C')) {
 			if (mStamina > 0) {
 				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-				mPosition = CVector(0.0f, 0.0f, 3.0f) * mMatrix;
+				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+				mStamina -= 2;
+			}
+			else if (mStamina <= 2 || mStamina >= 0) {
+				//X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
+				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
 				mStamina -= 2;
 			}
 		}
 		else {
         //X²•ûŒü‚É-‚Pi‚ñ‚¾’l‚ğ‰ñ“]ˆÚ“®‚³‚¹‚é
-		mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+		mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 		}
 	}
 	
@@ -231,12 +251,18 @@ void CPlayer::Update() {
 	//ãŒü‚«
 	if (CKey::Push('S')) {
 		//X²‚Ì‰ñ“]’l‚ğŒ¸Z
-		mRotation2.mX -= 3;
+		if (mRotation2.mX > -60) {
+
+			mRotation2.mX -= 3;
+		}
 	}
 	//‰ºŒü‚«
 	if (CKey::Push('W')) {
 		//X²‚Ì‰ñ“]’l‚ğ‰ÁZ
-		mRotation2.mX += 3;
+		if (mRotation2.mX < 90) {
+
+			mRotation2.mX += 3;
+		}
 	}
 	//CCharacter‚ÌXV
 	CTransform::Update();

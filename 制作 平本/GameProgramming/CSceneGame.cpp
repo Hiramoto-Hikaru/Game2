@@ -57,12 +57,12 @@ void CSceneGame::Init() {
 
    //敵の生成
    new CEnemy(&mModelc5,
-       CVector(-5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
+       CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(1.0f, 1.0f, 1.0f));
 
-   new CEnemy2(CVector(-5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
+   new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(0.1f, 0.1f, 0.1f));
-   new CEnemy2(CVector(5.0f, 3.0f, -10.0f) * mBackGroundMatrix,
+   new CEnemy2(CVector(5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(0.1f, 0.1f, 0.1f));
 
    //ビルボードの生成

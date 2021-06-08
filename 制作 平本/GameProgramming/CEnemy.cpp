@@ -11,13 +11,14 @@
 //CEnemy（モデル、位置、回転、拡縮)
 //&mMatrix=敵
 CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
-	:mCollider1(this, &mMatrix, CVector(0.0f, 5.0f, 0.0f), 0.8f)
-	, mCollider2(this, &mMatrix, CVector(0.0f, 5.0f, 7.0f), 0.8f)
-	, mCollider3(this, &mMatrix, CVector(0.0f, 5.0f, -7.0f), 0.8f)
+	:mCollider1(this, &mMatrix, CVector(0.0f, 1.0f, 0.0f), 0.8f)
+	, mCollider2(this, &mMatrix, CVector(0.0f, 1.0f, 7.0f), 0.8f)
+	, mCollider3(this, &mMatrix, CVector(0.0f, 1.0f, -7.0f), 0.8f)
 	, mpPlayer(nullptr)
 	, mFireCount(0)
 	,mHp(10)
 {
+
 
 	//モデル、位置、回転、拡縮を設定（クラス内のみ適用）
 	mpModel = model;//モデル

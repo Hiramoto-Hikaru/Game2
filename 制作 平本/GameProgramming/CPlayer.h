@@ -32,7 +32,7 @@ public:
     int mStamina;
     int mSpaceCount;
     int mCount;
-    CWeapon* Weapon;
+   // CWeapon* Weapon;
 };
 #endif
   
