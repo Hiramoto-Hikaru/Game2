@@ -1,0 +1,26 @@
+機材
+PC：Windows 10
+操作方法
+Aキー;左移動
+Dキー;右移動
+Jキー;ジャンプ
+スペースキー；弾発射
+
+他者が開発したプログラム
+CKey.h
+CKey.cpp
+CTexture.h
+CTexture.cpp
+CSceneManager.h
+CAceneManager.cpp
+CSound.h
+CSound.cpp
+CRectangle.h
+CRectangle.cpp
+CText.h
+CText.cpp
+CTexture.h
+CTexture.cpp
+main.cpp
+
+
