@@ -16,7 +16,7 @@ public:
     CColliderLine mLine3;//線分コライダ
 
     //CBullet bullet();
-   
+    CModel mModelW;
     void Update();
    //衝突処理
     void Collision(CCollider* m, CCollider* o);
@@ -24,14 +24,21 @@ public:
     CText mText;
     void Render();
     CCollider mCollider;//本体用コライダ
+    int mColliderCount;
     int mRotationCountFirst;
     int mRotationCount;
     int mRotationCount2;
     int mRotationCount3;
     int mRotationCount4;
-    int mStamina;
-    int mSpaceCount;
+    static  int mStamina;
+    static int mSpaceCount1;
+    static int mSpaceCount2;
+    static int mSpaceCount3;
     int mCount;
+    static int mAction1;
+    static int mAction2;
+    static int mAction3;
+
    // CWeapon* Weapon;
 };
 #endif

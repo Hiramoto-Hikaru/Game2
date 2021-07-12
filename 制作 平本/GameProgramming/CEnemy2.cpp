@@ -18,6 +18,7 @@ CEnemy2::CEnemy2()
 	,mHp(HP)
 
 {
+	mTag = EENEMY2;
 	//モデルが無いときは読み込む
 	if (mModel.mTriangles.size() == 0) {
 		mModel.Load(OBJ, MTL);
@@ -25,7 +26,7 @@ CEnemy2::CEnemy2()
 	//モデルのポインタ設定
 	mpModel = &mModel;
 	mColSearch.mTag = CCollider::ESEARCH;//タグ設定
-
+	mCollider.mTag = CCollider::EENEMY2COLLIDER;
 }
 
 //CEnemy(位置、回転、拡縮）
@@ -39,7 +40,7 @@ CEnemy2::CEnemy2(const CVector& position, const CVector& rotation, const CVector
 	mScale = scale;//拡縮の設定
 	CTransform::Update();//行列の更新
 	//目標地点の設定
-	mPoint =mPosition + CVector(0.0f, 0.0f, 30.0f) * mMatrixRotate;
+	mPoint =mPosition + CVector(0.0f, 0.0f, 100.0f) * mMatrixRotate;
  
 	//優先度を１に変更する
 	mPriority = 1;
@@ -54,39 +55,9 @@ void CEnemy2::Update() {
 	CVector vy = CVector(0.0f, 1.0f, 0.0f) * mMatrixRotate;
 	//前方向（Z軸）のベクトルを求める
 	CVector vz = CVector(0.0f, 0.0f, 5.0f) * mMatrixRotate;
-
-	//プレイヤーのポインタが０以外のとき
-	if (mpPlayer) {
-		//プレイヤーまでのベクトルを求める
-		//プレイヤーと敵の座標の差
-		CVector vp = mpPlayer->mPosition - mPosition;
-		float dx = vp.Dot(vx);
-		float dy = vp.Dot(vy);
-		float dz = vp.Dot(vz);
-		//X軸の-2～2の範囲に接触
-		
-				//Y軸の-2～2の範囲に接触
-			if (-10.0f < dy && dy < 10.0f) {
-				//位置を移動(Z軸方向に0.9ずつ移動）
-				mPosition = CVector(0.0f, 0.0f, 0.9f) * mMatrix;
-
-				//Z軸の0.0以上の範囲に接触
-				if (0.0f <= dz) {
-
-                //弾を発射
-
-				/*CBullet* bullet = new CBullet();
-				bullet->Set(0.1f, 1.5f);
-				bullet->mPosition = CVector(0.0f, 0.0f, 10.0f) * mMatrix;
-				bullet->mRotation = mRotation;
-				bullet->Update();*/
-				}
-				
-			}
-
-		
-
-	}
+	
+	
+	
 	//目標地点までのベクトルを求める
 	CVector vp = mPoint - mPosition;
 	//左ベクトルとの内積を求める
@@ -102,19 +73,13 @@ void CEnemy2::Update() {
 		else if (dx < -margin) {
 		mRotation.mY -= 1.0f;//右へ回転
         }
-	//上下方向に回転
-	/*if (dy > margin) {
-		mRotation.mX  -= 1.0f;//上へ回転
-	}
-	else if (dy < -margin) {
-		mRotation.mX += 1.0f;//下へ回転
-	}*/
+	
 	//移動する
 	mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
 	CTransform::Update();//行列更新
 
 
-	int r = rand() % 20; //rand()は整数の乱数を返す
+	int r = rand() % 180; //rand()は整数の乱数を返す
 	                     //%180は１８０で割った余りを求める
 	if (r == 0) {
 		if (mpPlayer) {
@@ -126,7 +91,7 @@ void CEnemy2::Update() {
 		}
 	}
 
-	mpPlayer =0;
+	
 	if (mHp <= 0) {
 		mHp--;
 		//15フレームごとにエフェクト
@@ -167,14 +132,11 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 
 	//相手のコライダタイプの判定
 	switch (o->mType) {
-	case CCollider::ESPHERE://球コライダのとき
-			//コライダのｍとｙが衝突しているか判定
+
+	case CCollider::EWEAPON://
+		//コライダのｍとｙが衝突しているか判定
 		if (CCollider::Collision(m, o)) {
-			//エフェクト生成
 			new CEffect(o->mpParent->mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
-			mHp--;
-			//衝突しているときは無効
-			//mEnabled=false;
 		}
 		break;
 	case CCollider::ETRIANGLE://三角コライダのとき

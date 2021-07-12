@@ -13,229 +13,251 @@
 #include"CText.h"
 #include"CWeapon.h"
 CMatrix Matrix;
+int CPlayer::mAction1 = 100;//１回目の攻撃の表示時間
+int CPlayer::mAction2 = 100;//２回目の攻撃の表示時間
+int CPlayer::mAction3 = 100;//３回目の攻撃の表示時間
+int CPlayer::mSpaceCount1 = 0;
+int CPlayer::mSpaceCount2 = 0;
+int CPlayer::mSpaceCount3 = 0;
+int CPlayer::mStamina = 400;
 CPlayer::CPlayer()
 //線分コライダの設定（親、親行列、頂点１、頂点２）
 	:mLine(this, &mMatrix, CVector(0.0f, 9.0f, -7.0f), CVector(0.0f, 9.0f, 10.0f)) //前後の線分コライダ
 	, mLine2(this, &mMatrix, CVector(0.0f, 12.0f, -4.0f), CVector(0.0f, 6.0f, -4.0f))  //上下の線分コライダ
 	, mLine3(this, &mMatrix, CVector(7.0f, 9.0f, -4.0f), CVector(-7.0f, 9.0f, -4.0f))  //左右の線分コライダ
-	,mCollider(this,&mMatrix,CVector(0.0f,9.0f,0.0f),0.1f)
+	,mCollider(this,&mMatrix,CVector(0.0f,9.0f,0.0f),1.0f)
 	, mRotationCountFirst(1)
 	,mRotationCount(0)
 	,mRotationCount2(0)
 	,mRotationCount3(0)
 	,mRotationCount4(0)
-	, mSpaceCount(0)
-	, mStamina(400)
+	
+	
+	, mColliderCount(0)
 {
 //テクスチャファイルの読み込み(１行６４列）
 mText.LoadTexture("FontWhite.tga", 1, 64);
-mTag = EPLAYER;//タグの設定
+mCollider.mTag = CCollider::EPLAYER;//タグの設定
 
-}
+mModelW.Load("Weapon.obj", "Weapon.mtl");
+} 
 void CPlayer::Update() {
-	
+	//常に武器表示
+	if (CKey::Push('U')) {
+		if (mSpaceCount1 >= 0 || mSpaceCount2 >= 0 || mSpaceCount3 >= 0) {
+			new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 
-	//スペースキー入力で弾発射
+		}
+	}
+	//スペースキー入力で武器
 	if (CKey::Once(VK_SPACE)) {
+		//最初の攻撃
+ 		if (mSpaceCount1 <= 0&&mAction3>=10) {
+			mSpaceCount1 = 100;
+			mAction1 = 0;
 
-		
-		//Weapon = new CWeapon();
-
-/*
-		if (mSpaceCount <= 0) {
-         mSpaceCount += 60;
-          Weapon->mAction1 += 60;
-      
+			mSpaceCount3 = 0;
+			mAction3 = 100;
+			new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 		}
-		else if (mSpaceCount > 0&& Weapon->mAction1>0) {
-			mSpaceCount += 60;
-			Weapon->mAction2 += 60;
+		//２回目の攻撃
+		else if (mSpaceCount2 <=0 && mAction1 >= 10) {
+			if (mAction1 < 100) {
+				mSpaceCount2 = 100;
+	     		mAction2 =0;
+
+				mAction1 = 100;
+				mSpaceCount1 = 0;
+				new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+			}
+			
 		}
-		else if (mSpaceCount > 0&& Weapon->mAction2 > 0) {
-			mSpaceCount += 60;
-			Weapon->mAction3 += 60;
-		}*/
+		//３回目の攻撃
+		else if (mSpaceCount3 <=0 &&  mAction2 >=10) {
+			if (mAction2 < 100) {
+				mSpaceCount3 = 100;
+  				mAction3 = 0;
 
-		/*//Y軸の回転値を増加
-		mRotation.mY += 50;
-		//CBulletをbulletに変換
-		CBullet* bullet = new CBullet();
-		//mPlayerの視点と同じ方向に飛ぶ
-		bullet->Set(0.1f, 1.5f);
-        bullet->mPosition = CVector(0.0f, 0.0f, 10.0f) * mMatrix;
-        bullet->mRotation = mRotation;
-		bullet->Update();
-		//弾クラスのインスタンスをタスクリストに追加
-		//TaskManager.Add(bullet);*/
-
+				mAction2 = 100;
+				mSpaceCount2 = 0;
+				new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+			}
+		}
 	}
-	if (mSpaceCount > 0) {
-		mSpaceCount--;
-	}
-	
+	//武器の表示時間
+	if (mSpaceCount1 > 0) {
+			mSpaceCount1--;
+		}
+		if (mSpaceCount2 > 0) {
+			mSpaceCount2--;
+		}
+		if (mSpaceCount3 > 0) {
+			mSpaceCount3--;
+		}
+		//スタミナ回復
 	if (mStamina <= 400) {
     mStamina++;
 	}
-	
-	//前進
-	 if (CKey::Push('I')) {
-		 if (mRotationCount <= 0) {
-			 mRotationCount += 1;
-			 if (mRotationCountFirst > 0) {
-				 mRotationCountFirst--;
+	if (mAction1 >= 100 && mAction2 >=100 && mAction3 >=100) {
+		//前進
+		if (CKey::Push('I')) {
+			if (mRotationCount <= 0) {
+				mRotationCount += 1;
+				if (mRotationCountFirst > 0) {
+					mRotationCountFirst--;
 
-			 }
-		 }
-		 else if (mRotationCount2 > 0) {//右を向いていたとき
-			 mRotation.mY += 90;
-			 mRotationCount2 -= 1;
-		 }
-	     else if (mRotationCount3 > 0) {//後ろを向いていたとき
-			 mRotation.mY +=180;
+				}
+			}
+			else if (mRotationCount2 > 0) {//右を向いていたとき
+				mRotation.mY += 90;
+				mRotationCount2 -= 1;
+			}
+			else if (mRotationCount3 > 0) {//後ろを向いていたとき
+				mRotation.mY += 180;
 				mRotationCount3 -= 1;
-	     }
-		 else if (mRotationCount4 > 0) {//左を向いていたとき
-			 mRotation.mY -=90;
+			}
+			else if (mRotationCount4 > 0) {//左を向いていたとき
+				mRotation.mY -= 90;
 				mRotationCount4 -= 1;
-	     }
-		if (CKey::Push('C')) {
-			if (mStamina > 0) {
-				
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
-				mStamina -= 2;
 			}
-			else if (mStamina <= 2 || mStamina >= 0) {
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
-				mStamina -= 2;
-			}
-		}
-		else {
-			//X軸方向に-１進んだ値を回転移動させる
-			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
-		}
-		
-		
-	}
-	//後退
-	else if (CKey::Push('K')) {
-		 if (mRotationCount3 <= 0) {
-			 mRotationCount3 += 1;
-			 if (mRotationCountFirst > 0) {
-				 mRotation.mY += 180;
-				 mRotationCountFirst--;
-			 }
-		 }
-		 else if (mRotationCount2 > 0) {//右を向いていたとき
-			 mRotation.mY -=90;
-			 mRotationCount2 -= 1;
-		 }
-		 else if (mRotationCount > 0) {//正面を向いていたとき
-			 mRotation.mY+=180;
-			 mRotationCount -= 1;
-		 }
-		 else if (mRotationCount4 >0) {//左を向いていたとき
-			 mRotation.mY += 90;
-			 mRotationCount4 -= 1;
-		 }
-		if (CKey::Push('C')) {
-			if (mStamina > 0) {
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
-				mStamina -= 2;
-			}
-			else if (mStamina <= 2 || mStamina >= 0) {
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
-				mStamina -= 2;
-			}
-		}
-		else {
-			//X軸方向に-１進んだ値を回転移動させる
-			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
-		}
+			if (CKey::Push('C')) {
+				if (mStamina > 0) {
 
-	}
-	//左折
-	else if (CKey::Push('J')) {
-		 if (mRotationCount4 <= 0) {
-			 mRotationCount4 += 1;
-			 if (mRotationCountFirst > 0) {
-				 mRotation.mY += 90;
-				 mRotationCountFirst--;
-			 }
-		 }
-		 else if (mRotationCount2 > 0) {//右を向いていたとき
-			 mRotation.mY +=180;
-			 mRotationCount2 -= 1;
-		 }
-		 else if (mRotationCount3 > 0) {//後ろを向いていたとき
-			 mRotation.mY -=90;
-			 mRotationCount3 -= 1;
-		 }
-		 else if (mRotationCount > 0) {//正面を向いていたとき
-			 mRotation.mY += 90;
-			 mRotationCount -= 1;
-		 }
-		if (CKey::Push('C')) {
-			if (mStamina > 0) {
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
-				mStamina -= 2;
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+					mStamina -= 2;
+				}
+				else if (mStamina <= 2 || mStamina >= 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+					mStamina -= 2;
+				}
 			}
-			else if (mStamina <= 2 || mStamina >= 0) {
+			else {
 				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
-				mStamina -= 2;
+				mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 			}
-		}
-		else {
-			//X軸方向に-１進んだ値を回転移動させる
-			mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
-		}
-		
 
-	}
-	//右折
-	else if (CKey::Push('L')) {
-		 if (mRotationCount2 <= 0) {
-			 mRotationCount2 += 1;
-			 if (mRotationCountFirst > 0) {
-				 mRotation.mY -= 90;
-				 mRotationCountFirst--;
-			 }
-		 }
-		 else if (mRotationCount > 0) {//正面を向いていたとき
-			 mRotation.mY -= 90;
-			 mRotationCount -= 1;
-		 }
-		 else if (mRotationCount3 > 0) {//後ろを向いていたとき
-			 mRotation.mY += 90;
-			 mRotationCount3 -= 1;
-		 }
-		 else if (mRotationCount4 > 0) {//左を向いていたとき
-			 mRotation.mY +=180;
-			 mRotationCount4 -= 1;
-		 }
-		if (CKey::Push('C')) {
-			if (mStamina > 0) {
-				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
-				mStamina -= 2;
+
+		}
+		//後退
+		else if (CKey::Push('K')) {
+			if (mRotationCount3 <= 0) {
+				mRotationCount3 += 1;
+				if (mRotationCountFirst > 0) {
+					mRotation.mY += 180;
+					mRotationCountFirst--;
+				}
 			}
-			else if (mStamina <= 2 || mStamina >= 0) {
+			else if (mRotationCount2 > 0) {//右を向いていたとき
+				mRotation.mY -= 90;
+				mRotationCount2 -= 1;
+			}
+			else if (mRotationCount > 0) {//正面を向いていたとき
+				mRotation.mY += 180;
+				mRotationCount -= 1;
+			}
+			else if (mRotationCount4 > 0) {//左を向いていたとき
+				mRotation.mY += 90;
+				mRotationCount4 -= 1;
+			}
+			if (CKey::Push('C')) {
+				if (mStamina > 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+					mStamina -= 2;
+				}
+				else if (mStamina <= 2 || mStamina >= 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+					mStamina -= 2;
+				}
+			}
+			else {
 				//X軸方向に-１進んだ値を回転移動させる
-				mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
-				mStamina -= 2;
+				mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
+			}
+
+		}
+		//左折
+		else if (CKey::Push('J')) {
+			if (mRotationCount4 <= 0) {
+				mRotationCount4 += 1;
+				if (mRotationCountFirst > 0) {
+					mRotation.mY += 90;
+					mRotationCountFirst--;
+				}
+			}
+			else if (mRotationCount2 > 0) {//右を向いていたとき
+				mRotation.mY += 180;
+				mRotationCount2 -= 1;
+			}
+			else if (mRotationCount3 > 0) {//後ろを向いていたとき
+				mRotation.mY -= 90;
+				mRotationCount3 -= 1;
+			}
+			else if (mRotationCount > 0) {//正面を向いていたとき
+				mRotation.mY += 90;
+				mRotationCount -= 1;
+			}
+			if (CKey::Push('C')) {
+				if (mStamina > 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+					mStamina -= 2;
+				}
+				else if (mStamina <= 2 || mStamina >= 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+					mStamina -= 2;
+				}
+			}
+			else {
+				//X軸方向に-１進んだ値を回転移動させる
+				mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
+			}
+
+
+		}
+		//右折
+		else if (CKey::Push('L')) {
+			if (mRotationCount2 <= 0) {
+				mRotationCount2 += 1;
+				if (mRotationCountFirst > 0) {
+					mRotation.mY -= 90;
+					mRotationCountFirst--;
+				}
+			}
+			else if (mRotationCount > 0) {//正面を向いていたとき
+				mRotation.mY -= 90;
+				mRotationCount -= 1;
+			}
+			else if (mRotationCount3 > 0) {//後ろを向いていたとき
+				mRotation.mY += 90;
+				mRotationCount3 -= 1;
+			}
+			else if (mRotationCount4 > 0) {//左を向いていたとき
+				mRotation.mY += 180;
+				mRotationCount4 -= 1;
+			}
+			if (CKey::Push('C')) {
+				if (mStamina > 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 4.0f) * mMatrix;
+					mStamina -= 2;
+				}
+				else if (mStamina <= 2 || mStamina >= 0) {
+					//X軸方向に-１進んだ値を回転移動させる
+					mPosition = CVector(0.0f, 0.0f, 1.0f) * mMatrix;
+					mStamina -= 2;
+				}
+			}
+			else {
+				//X軸方向に-１進んだ値を回転移動させる
+				mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
 			}
 		}
-		else {
-        //X軸方向に-１進んだ値を回転移動させる
-		mPosition = CVector(0.0f, 0.0f, 2.0f) * mMatrix;
-		}
 	}
-	
     //左向き
 	 if (CKey::Push('A')) {
 		//Y軸の回転値を増加
@@ -262,8 +284,17 @@ void CPlayer::Update() {
 		if (mRotation2.mX < 90) {
 
 			mRotation2.mX += 3;
-		}
+		}                 
 	}
+
+	/*if (mColliderCount > 0) {
+		mColliderCount--;
+		mPosition.mZ -= mColliderCount;
+		mPosition.mY += mColliderCount;
+	}
+	if (mPosition.mY > 0.0f) {
+		mPosition.mY -= 1.0f;
+	}*/
 	//CCharacterの更新
 	CTransform::Update();
 }	
@@ -282,6 +313,35 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 					CTransform::Update();
 
 				}
+				if (o->mType == CCollider::ESPHERE) {
+					/*CVector adjust;//調整用ベクトル
+				//三角形と線分の衝突判定
+				// //相手がプレイヤーのとき、
+					if (o->mpParent->mTag == CCollider::EENEMYCOLLIDER1) {
+						CCollider::CollisionTriangleLine(o, m, &adjust);
+						mColliderCount = 2.0f;
+					}
+					if (o->mpParent->mTag == CCollider::EENEMY2COLLIDER) {
+						CCollider::CollisionTriangleLine(o, m, &adjust);
+						mColliderCount = 2.0f;
+					}*/
+					
+				}
+	case CCollider::EPLAYER://線分コライダ
+		if (o->mType == CCollider::ESPHERE) {
+			CVector adjust;//調整用ベクトル
+		//三角形と線分の衝突判定
+		// //相手がプレイヤーのとき、
+			if (o->mpParent->mTag == CCollider::EENEMYCOLLIDER1) {
+				CCollider::CollisionTriangleLine(o, m, &adjust);
+				mColliderCount = 20.0f;
+			}
+			if (o->mpParent->mTag == CCollider::EENEMY2COLLIDER) {
+				CCollider::CollisionTriangleLine(o, m, &adjust);
+				mColliderCount = 20.0f;
+			}
+
+		}
 			break;
 	}
 }
@@ -311,9 +371,17 @@ void CPlayer::Render() {
 
 	//Y座標の表示
 	//文字列の設定
-	sprintf(buf, "PY:%7.2f", mPosition.mY);
+	sprintf(buf, "ACTION:%7.2d", mAction1);
 	//文字列の描画
 	mText.DrawString(buf, 100, 30, 8, 16);
+	//文字列の設定
+	sprintf(buf, "STAMINA:%7.2d", mStamina);
+	//文字列の描画
+	mText.DrawString(buf, 100, 130, 8, 16);
+	//文字列の設定
+	sprintf(buf, "SPACE:%7.2d", mSpaceCount1);
+	//文字列の描画
+	mText.DrawString(buf, 100, 80, 8, 16);
 
 	//X座標の表示
 	//文字列の設定

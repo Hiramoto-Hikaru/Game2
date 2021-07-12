@@ -4,7 +4,7 @@
 #define COLLISIONRANGE 30
 CBullet::CBullet()
 :mLife(50)
-, mCollider4(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 0.1f)
+, mCollider4(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 3.0f)
 {
 
 }

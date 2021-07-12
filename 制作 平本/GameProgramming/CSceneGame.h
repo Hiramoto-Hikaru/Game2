@@ -18,6 +18,7 @@
 
 class CSceneGame : public CScene {
 public:
+	
 	CVector mEye; //カメラ視点の追加
 	CModel mModel;//CModelクラスのインスタンス変数
 	CModel mBackGround;//背景モデル
@@ -32,7 +33,7 @@ public:
 	//敵モデルのインスタンス（クラスと同じものは使えない）
 	CModel mModelC5;
 	CModel mModelc5;
-	CModel mModelW;
+	
 	//三角コライダの作成
 	CColliderTriangle mColliderTriangle;
 	CColliderTriangle mColliderTriangle2;

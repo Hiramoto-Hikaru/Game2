@@ -20,8 +20,39 @@
 #include"CColliderMesh.h"
 #include"CEnemy2.h"
 #include"CWeapon.h"
+void CSceneGame::Init()
 
-void CSceneGame::Init() {
+{
+    mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
+    mModelc5.Load("Car.obj", "Car.mtl");
+
+    int  map[10][10] =
+    {
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,1,1,1,1,1,1,1,1,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+    };
+    for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 10; i++) {
+            if (map[i][j] == 1) {
+
+
+               new CEnemy2(CVector(i*5.0f, 1.0f, j*10.0f) * mBackGroundMatrix,
+                    CVector(), CVector(0.1f, 0.1f, 0.1f));
+
+            }
+
+
+
+        }
+    }
     //初期化・・・あらかじめ値を代入しておくこと
     mEye = CVector(1.0f, 2.0f, 3.0f);//X軸、Y軸、Z軸の初期化（右斜め上）
     //モデルファイルの入力
@@ -31,7 +62,7 @@ void CSceneGame::Init() {
 
     CMatrix matrix;
     matrix.Print();
- mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
+ //mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
    
     //プレイヤーモデル
     mPlayer.mpModel = &mModel;
@@ -42,26 +73,21 @@ void CSceneGame::Init() {
     //回転行列
    mPlayer.mRotation = CVector(0.0f, 180.0f, 0.0f);
 
-   //objとmtlの読み込み
-   //C5モデルの読み込み
-   mModelW.Load("Weapon.obj", "Weapon.mtl");
- /*  new CWeapon(&mModelW,
-       CVector(0.0f, 3.0f, 1.0f) * mBackGroundMatrix,
-       CVector(), CVector(1.0f, 1.0f, 1.0f));*/
-   mModelc5.Load("Car.obj", "Car.mtl");
+ 
+   //mModelc5.Load("Car.obj", "Car.mtl");
    //敵機のインスタンス作成
    //CEnemy（モデル、位置、回転、拡縮)
    //&,,,ポインタ取得
- // new CWeapon(&mModelW, mPlayer.mPosition,
-    //  CVector(), CVector(0.1f, 0.1f, 0.1f));
-
+   
    //敵の生成
    new CEnemy(&mModelc5,
        CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(1.0f, 1.0f, 1.0f));
-
-   new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-       CVector(), CVector(0.1f, 0.1f, 0.1f));
+   
+       new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+           CVector(), CVector(0.1f, 0.1f, 0.1f));
+     
+ 
    new CEnemy2(CVector(5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(0.1f, 0.1f, 0.1f));
 
