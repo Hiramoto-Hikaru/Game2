@@ -101,6 +101,7 @@
     <ClCompile Include="CMaterial.cpp" />
     <ClCompile Include="CMatrix.cpp" />
     <ClCompile Include="CModel.cpp" />
+    <ClCompile Include="CParent.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CSceneGame.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="CKey.h" />
     <ClInclude Include="CMatrix.h" />
     <ClInclude Include="CModel.h" />
+    <ClInclude Include="CParent.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CTask.h" />
     <ClInclude Include="CTaskManager.h" />

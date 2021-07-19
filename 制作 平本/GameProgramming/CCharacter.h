@@ -23,7 +23,7 @@ public:
 		EZERO,//初期値
 		EPLAYER,//プレイヤー
 		EENEMY,//敵
-		
+		EWEAPON,
 		EENEMY2,
 		
 		EBULLETPLAYER,//プレイヤーの弾

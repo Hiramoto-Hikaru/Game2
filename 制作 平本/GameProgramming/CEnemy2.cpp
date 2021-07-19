@@ -6,7 +6,8 @@
 #define MTL "f14.mtl"//モデルのマテリアルファイル
 #define HP 3
 #define VELOCITY 0.11f //マクロ
-
+#define JUMP 7.0f
+#define G 1.0f
 CModel CEnemy2::mModel;//モデルデータ作成
 
 //デフォルトコンストラクタ
@@ -16,7 +17,8 @@ CEnemy2::CEnemy2()
 	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,100.0f),200.0f)
 	,mpPlayer(0)
 	,mHp(HP)
-
+	,mJump(0)
+	,mJump2(0)
 {
 	mTag = EENEMY2;
 	//モデルが無いときは読み込む
@@ -49,6 +51,8 @@ CEnemy2::CEnemy2(const CVector& position, const CVector& rotation, const CVector
 }
 //更新処理
 void CEnemy2::Update() {
+
+	//if(mPosition.mY<=mpPlayer->mPosition.mY)
 	//左向き（X軸）のベクトルを求める
 	CVector vx = CVector(1.0f, 0.0f, 0.0f)*mMatrixRotate;
 	//上向き（Y軸）のベクトルを求める
@@ -64,6 +68,8 @@ void CEnemy2::Update() {
 	float dx = vp.Dot(vx);
 	//上ベクトルとの内積を求める
 	float dy = vp.Dot(vy);
+	//前ベクトルとの内積を求める
+	float dz = vp.Dot(vz);
 	float margin = 0.1f;
 	//左右方向へ回転
 
@@ -79,9 +85,11 @@ void CEnemy2::Update() {
 	CTransform::Update();//行列更新
 
 
-	int r = rand() % 180; //rand()は整数の乱数を返す
+	int r = rand() % 60; //rand()は整数の乱数を返す
 	                     //%180は１８０で割った余りを求める
 	if (r == 0) {
+	
+	
 		if (mpPlayer) {
 			mPoint = mpPlayer->mPosition;
 
@@ -90,29 +98,39 @@ void CEnemy2::Update() {
 			mPoint = mPoint * CMatrix().RotateY(45);
 		}
 	}
-
+	mpPlayer = 0;
 	
 	if (mHp <= 0) {
 		mHp--;
 		//15フレームごとにエフェクト
-		/*if (mHp % 15 == 0) {
+		if (mHp % 15 == 0) {
 			
             //エフェクト生成
-			new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
-		}*/
+			//new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
+		}
 		
 		CTransform::Update();
 		return;
 	}
-
+	if (mHp <= -100) {
+		mEnabled = false;
+	}
+	if (mJump > 0) {
+     mPosition.mZ -= mJump;
+	 mJump--;
+	}
+	if (mJump2 > 0) {
+		mPosition.mY += mJump;
+		mJump2--;
+	}
+	if (mPosition.mY > 1.0f) {
+      mPosition.mY -= G;
+	}
+	
 }
 //Collision(コライダ１，コライダ２，）
 void CEnemy2::Collision(CCollider* m, CCollider* o) {
-	//相手がサーチのときは戻る
-	if (o->mTag == CCollider::ESEARCH) {
-		
-		return;
-	}
+	
 	//自分がサーチ用のとき
 	if (m->mTag == CCollider::ESEARCH) {
 		//相手が弾コライダのとき
@@ -128,17 +146,25 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 		}
 		return;
 	}
-
-
+	if (m->mType == CCollider::ESPHERE) {
+		if (o->mType == CCollider::ESPHERE) {
+			//相手が武器のとき、
+			if (o->mpParent->mTag == EWEAPON) {
+				//衝突しているとき
+				if (CCollider::Collision(m, o)) {
+					new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
+					mJump = JUMP;
+					mJump2 = JUMP;
+					mHp--;
+				}
+			}
+		}
+		return;
+	}
 	//相手のコライダタイプの判定
 	switch (o->mType) {
 
-	case CCollider::EWEAPON://
-		//コライダのｍとｙが衝突しているか判定
-		if (CCollider::Collision(m, o)) {
-			new CEffect(o->mpParent->mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
-		}
-		break;
+	
 	case CCollider::ETRIANGLE://三角コライダのとき
 		CVector adjust;//調整値
 		//三角コライダと球コライダの衝突判定
@@ -147,11 +173,9 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 		{
 			//衝突しない位置まで戻す
 			mPosition = mPosition + adjust;
-				//撃破で地面に衝突すると無効
-			if (mHp <= 0) {
+              
 			
-				 //mEnabled = false;
-			}
+			
 		}
 	
 		break;

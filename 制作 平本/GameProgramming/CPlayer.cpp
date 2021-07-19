@@ -20,6 +20,7 @@ int CPlayer::mSpaceCount1 = 0;
 int CPlayer::mSpaceCount2 = 0;
 int CPlayer::mSpaceCount3 = 0;
 int CPlayer::mStamina = 400;
+int CPlayer::mWeaponCount = 0;
 CPlayer::CPlayer()
 //線分コライダの設定（親、親行列、頂点１、頂点２）
 	:mLine(this, &mMatrix, CVector(0.0f, 9.0f, -7.0f), CVector(0.0f, 9.0f, 10.0f)) //前後の線分コライダ
@@ -31,14 +32,13 @@ CPlayer::CPlayer()
 	,mRotationCount2(0)
 	,mRotationCount3(0)
 	,mRotationCount4(0)
-	
-	
 	, mColliderCount(0)
+	,mChild(this)
 {
 //テクスチャファイルの読み込み(１行６４列）
 mText.LoadTexture("FontWhite.tga", 1, 64);
 mCollider.mTag = CCollider::EPLAYER;//タグの設定
-
+mTag = EPLAYER;
 mModelW.Load("Weapon.obj", "Weapon.mtl");
 } 
 void CPlayer::Update() {
@@ -53,7 +53,7 @@ void CPlayer::Update() {
 	if (CKey::Once(VK_SPACE)) {
 		//最初の攻撃
  		if (mSpaceCount1 <= 0&&mAction3>=10) {
-			mSpaceCount1 = 100;
+			mSpaceCount1 = 60;
 			mAction1 = 0;
 
 			mSpaceCount3 = 0;
@@ -66,7 +66,7 @@ void CPlayer::Update() {
 				mSpaceCount2 = 100;
 	     		mAction2 =0;
 
-				mAction1 = 100;
+				mAction1 = 60;
 				mSpaceCount1 = 0;
 				new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 			}
@@ -75,7 +75,7 @@ void CPlayer::Update() {
 		//３回目の攻撃
 		else if (mSpaceCount3 <=0 &&  mAction2 >=10) {
 			if (mAction2 < 100) {
-				mSpaceCount3 = 100;
+				mSpaceCount3 = 60;
   				mAction3 = 0;
 
 				mAction2 = 100;
@@ -98,9 +98,10 @@ void CPlayer::Update() {
 	if (mStamina <= 400) {
     mStamina++;
 	}
-	if (mAction1 >= 100 && mAction2 >=100 && mAction3 >=100) {
+	if (mAction1 >= 60 && mAction2 >=60 && mAction3 >=60) {
 		//前進
 		if (CKey::Push('I')) {
+			mWeaponCount = 0;
 			if (mRotationCount <= 0) {
 				mRotationCount += 1;
 				if (mRotationCountFirst > 0) {
@@ -142,6 +143,7 @@ void CPlayer::Update() {
 		}
 		//後退
 		else if (CKey::Push('K')) {
+			mWeaponCount = 1;
 			if (mRotationCount3 <= 0) {
 				mRotationCount3 += 1;
 				if (mRotationCountFirst > 0) {
@@ -181,6 +183,7 @@ void CPlayer::Update() {
 		}
 		//左折
 		else if (CKey::Push('J')) {
+			mWeaponCount = 2;
 			if (mRotationCount4 <= 0) {
 				mRotationCount4 += 1;
 				if (mRotationCountFirst > 0) {
@@ -221,6 +224,7 @@ void CPlayer::Update() {
 		}
 		//右折
 		else if (CKey::Push('L')) {
+		mWeaponCount = 3;
 			if (mRotationCount2 <= 0) {
 				mRotationCount2 += 1;
 				if (mRotationCountFirst > 0) {

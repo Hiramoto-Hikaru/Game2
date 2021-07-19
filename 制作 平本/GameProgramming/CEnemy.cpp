@@ -6,6 +6,7 @@
 #include"CBullet.h"
 #include"CCollisionManager.h"
 #define COLLISIONRANGE 30
+#define HP 10
 #define VELOCITY 0.11f //マクロ
 //コンストラクタ
 //CEnemy（モデル、位置、回転、拡縮)
@@ -17,7 +18,7 @@ CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
 	, mColSearch(this, &mMatrix, CVector(0.0f, 0.0f, 100.0f), 200.0f)
 	, mpPlayer(nullptr)
 	, mFireCount(0)
-	,mHp(10)
+	,mHp(HP)
 {
 	
 
@@ -93,20 +94,20 @@ void CEnemy::Update() {
 		mHp--;
 		mEnabled = false;
 		//15フレームごとにエフェクト
-		/*if (mHp % 15 == 0) {
+		if (mHp % 15 == 0) {
 			//エフェクト生成
-			new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
-		}*/
+			//new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
+		}
 		CTransform::Update();
 		return;
 	}
-	
+	if (mHp <= -100) {
+		mEnabled = false;
+	}
+
 }
 void CEnemy::Collision(CCollider* m, CCollider* o) {
-	//相手がサーチのときは戻る
-	if (o->mTag == CCollider::ESEARCH) {
-		return;
-	}
+	
 	//自分がサーチ用のとき
 	if (m->mTag == CCollider::ESEARCH) {
 		//相手が弾コライダのとき
@@ -123,17 +124,21 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 		return;
 	}
 
+	if (m->mType == CCollider::ESPHERE) {
+		if (o->mType == CCollider::ESPHERE) {
+			//相手が武器のとき、
+			if (o->mpParent->mTag == EWEAPON) {
+				//衝突しているとき
+				if (CCollider::Collision(m, o)) {
+					new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
+					mHp--;
+				}
+			}
+		}
+		return;
+	}
 	//相手のコライダタイプの判定
 	switch (o->mType) {
-
-
-	
-	case CCollider::EWEAPON://
-		//コライダのｍとｙが衝突しているか判定
-		if (CCollider::Collision(m, o)) {
-			new CEffect(o->mpParent->mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
-		}
-		break;
 	case CCollider::ETRIANGLE://三角コライダのとき
 				CVector adjust;//調整値
 				//三角コライダと球コライダの衝突判定

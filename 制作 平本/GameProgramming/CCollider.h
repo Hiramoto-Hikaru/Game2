@@ -26,14 +26,15 @@ public:
 		ESPHERE,//弾コライダ
 		ETRIANGLE,//三角コライダ
 		ELINE,  //線分コライダ
-      
+       
 	};
 	EType mType;//コライダタイプ
 	enum ETag {
+        EWEAPON,
 		EPLAYER,
 		EBODY,//本体用
 		ESEARCH,//サーチ用
-		EWEAPON,
+		
 	    EENEMYCOLLIDER1,
 		EENEMYCOLLIDER2,
 		EENEMYCOLLIDER3,

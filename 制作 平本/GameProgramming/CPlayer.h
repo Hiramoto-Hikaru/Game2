@@ -6,6 +6,7 @@
 #include"CBullet.h"
 #include"CText.h"
 #include"CText.h"
+#include"CParent.h"
 class CWeapon;
 class CPlayer : public CCharacter {
 public:
@@ -34,11 +35,13 @@ public:
     static int mSpaceCount1;
     static int mSpaceCount2;
     static int mSpaceCount3;
+    static int mWeaponCount;
     int mCount;
     static int mAction1;
     static int mAction2;
     static int mAction3;
-
+    //子のインスタンス
+    CChild mChild;
    // CWeapon* Weapon;
 };
 #endif

@@ -17,6 +17,8 @@ public:
 	CEnemy2();
 	CVector mPoint;//目標地点
 	int mHp;//体力
+	int mJump;
+	int mJump2;
 	//CEnemy2(位置、回転、拡縮）
 	CEnemy2(const CVector& position, const CVector& rotation, const CVector& scale);
 	CCollider mColSearch;//サーチ用コライダ
