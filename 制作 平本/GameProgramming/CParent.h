@@ -14,6 +14,13 @@ private:
 	CCharacter* mpParent;
 	//ƒRƒ‰ƒCƒ_
 	CCollider mCollider;
+
+    int mRotationCountFirst;
+	int mRotationCount;
+	int mRotationCount2;
+	int mRotationCount3;
+	int mRotationCount4;
+	int mStamina2;
 public:
 	CChild(CCharacter* parent);
 	

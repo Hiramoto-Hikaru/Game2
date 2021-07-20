@@ -108,7 +108,7 @@ void CSceneGame::Init()
 
    //背景モデルから三角コライダの生成
    //親インスタンスと親行列はなし
-   mColliderMesh.Set(NULL, &mBackGroundMatrix , &mBackGround);
+   //mColliderMesh.Set(NULL, &mBackGroundMatrix , &mBackGround);
 
   
 }

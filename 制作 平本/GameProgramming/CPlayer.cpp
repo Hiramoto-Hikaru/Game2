@@ -11,7 +11,7 @@
 #include"CTask.h"
 #include"CUtil.h"
 #include"CText.h"
-#include"CWeapon.h"
+//#include"CWeapon.h"
 CMatrix Matrix;
 int CPlayer::mAction1 = 100;//ÇPâÒñ⁄ÇÃçUåÇÇÃï\é¶éûä‘
 int CPlayer::mAction2 = 100;//ÇQâÒñ⁄ÇÃçUåÇÇÃï\é¶éûä‘
@@ -45,7 +45,7 @@ void CPlayer::Update() {
 	//èÌÇ…ïêäÌï\é¶
 	if (CKey::Push('U')) {
 		if (mSpaceCount1 >= 0 || mSpaceCount2 >= 0 || mSpaceCount3 >= 0) {
-			new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+			//new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 
 		}
 	}
@@ -58,7 +58,7 @@ void CPlayer::Update() {
 
 			mSpaceCount3 = 0;
 			mAction3 = 100;
-			new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+			//new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 		}
 		//ÇQâÒñ⁄ÇÃçUåÇ
 		else if (mSpaceCount2 <=0 && mAction1 >= 10) {
@@ -68,7 +68,7 @@ void CPlayer::Update() {
 
 				mAction1 = 60;
 				mSpaceCount1 = 0;
-				new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+				//new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 			}
 			
 		}
@@ -80,7 +80,7 @@ void CPlayer::Update() {
 
 				mAction2 = 100;
 				mSpaceCount2 = 0;
-				new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
+				//new CWeapon(&mModelW, mPosition, CVector(), CVector(0.7f, 0.7f, 0.7f));
 			}
 		}
 	}

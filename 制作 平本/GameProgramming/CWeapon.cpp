@@ -70,9 +70,9 @@ void CWeapon::Update(){
 	}
 
 		if (CPlayer::mAction1 <60) {
-			if (mPosition.mY <= 3.0f) {
+			//if (mPosition.mY <= 3.0f) {
 				mPosition.mY += 3;
-			}
+			//}
             mRotation.mX += 20.0f;
            CPlayer::mAction1++;
 		}

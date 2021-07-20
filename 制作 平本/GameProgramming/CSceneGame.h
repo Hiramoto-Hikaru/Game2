@@ -28,7 +28,7 @@ public:
 	CPlayer mPlayer;
 	
 	//モデルからコライダ生成
-	CColliderMesh mColliderMesh;
+	//CColliderMesh mColliderMesh;
 
 	//敵モデルのインスタンス（クラスと同じものは使えない）
 	CModel mModelC5;
