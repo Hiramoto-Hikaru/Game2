@@ -295,7 +295,7 @@ void CPlayer::Update() {
 	//êÅÇ´îÚÇ‘
 	if (mColliderCount > 0) {
 		mColliderCount--;
-		mPosition.mZ -= mColliderCount;
+		//mPosition.mZ -= mColliderCount;
 		mPosition.mY += mColliderCount;
 	}
 	//èdóÕ
