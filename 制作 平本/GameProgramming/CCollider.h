@@ -30,14 +30,13 @@ public:
 	};
 	EType mType;//コライダタイプ
 	enum ETag {
-        EWEAPON,
-		EPLAYER,
+        EWEAPONCOLLIDER,
+		EPLAYERCOLLIDER,
 		EBODY,//本体用
 		ESEARCH,//サーチ用
 		
-	    EENEMYCOLLIDER1,
-		EENEMYCOLLIDER2,
-		EENEMYCOLLIDER3,
+	    EENEMYCOLLIDER,
+		
 		EENEMY2COLLIDER,
 	};
 	ETag mTag;

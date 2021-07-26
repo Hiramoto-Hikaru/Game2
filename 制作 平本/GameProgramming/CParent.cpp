@@ -20,7 +20,7 @@ CChild::CChild(CCharacter* parent)
 	: mCollider(this, &mMatrix, COLLIDER_POS, 2.0f)
 	
 {
-	mCollider.mTag = CCollider::EWEAPON;
+	mCollider.mTag = CCollider::EWEAPONCOLLIDER;
 	mTag = EWEAPON;
 	mInitPose =CVector (0.0f, 0.0f, 1.0f);
 	//親のインスタンスの退避

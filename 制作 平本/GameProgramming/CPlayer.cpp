@@ -37,7 +37,7 @@ CPlayer::CPlayer()
 {
 //テクスチャファイルの読み込み(１行６４列）
 mText.LoadTexture("FontWhite.tga", 1, 64);
-mCollider.mTag = CCollider::EPLAYER;//タグの設定
+mCollider.mTag = CCollider::EPLAYERCOLLIDER;//タグの設定
 mTag = EPLAYER;
 mModelW.Load("Weapon.obj", "Weapon.mtl");
 } 
@@ -296,7 +296,7 @@ void CPlayer::Update() {
 	if (mColliderCount > 0) {
 		mColliderCount--;
 		//mPosition.mZ -= mColliderCount;
-		mPosition.mY += mColliderCount;
+		//mPosition.mY += mColliderCount;
 	}
 	//重力
 	if (mPosition.mY > 0.0f) {
@@ -306,31 +306,83 @@ void CPlayer::Update() {
 	CTransform::Update();
 }	
 void CPlayer::Collision(CCollider* m, CCollider* o) {
+	if (m->mType == CCollider::ESPHERE) {
+		//プレイヤーのとき、
+		if (m->mpParent->mTag == EPLAYER) {
+			if (o->mTag == CCollider::EPLAYERCOLLIDER) {
+				if (o->mpParent->mTag == EENEMY) {
+					if (o->mTag == CCollider::EENEMYCOLLIDER) {
+
+						//衝突しているとき
+						if (CCollider::Collision(m, o)) {
+							//mColliderCount = 10;
+						}
+					}
+				}
+				else if (o->mpParent->mTag == EENEMY2) {
+					if (o->mTag == CCollider::EENEMY2COLLIDER) {
+						//衝突しているとき
+						if (CCollider::Collision(m, o)) {
+							//mColliderCount = 10;
+						}
+					}
+
+
+
+
+				}
+
+			}
+		}
+
+	}
 	//自身のコライダの設定
 	switch (m->mType) {
 	case CCollider::ELINE://線分コライダ
 			//相手のコライダが三角コライダの場合
-				if (o->mType == CCollider::ETRIANGLE) {
-					CVector adjust;//調整用ベクトル
-					//三角形と線分の衝突判定
-					CCollider::CollisionTriangleLine(o, m, &adjust);
-					//位置の更新（mPosition+adjust)
-					mPosition = mPosition - adjust * -1;
-					//行列の更新
-					CTransform::Update();
-				}
-       
-	case CCollider::ESPHERE:
-		if (o->mType == CCollider::ESPHERE) {
-			if (o->mpParent->mTag == EENEMY) {
-				//mColliderCount = 10;
-			}
-            else if (o->mpParent->mTag == EENEMY2) {
-				mColliderCount = 10;
-			}
+		if (o->mType == CCollider::ETRIANGLE) {
+			CVector adjust;//調整用ベクトル
+			//三角形と線分の衝突判定
+			CCollider::CollisionTriangleLine(o, m, &adjust);
+			//位置の更新（mPosition+adjust)
+			mPosition = mPosition - adjust * -1;
+			//行列の更新
+			CTransform::Update();
 		}
+	case CCollider::ESPHERE:
 		
-	 }
+		if (o->mType == CCollider::ESPHERE) {
+
+			if (o->mpParent->mTag == EENEMY) {
+				if (o->mTag == CCollider::EENEMYCOLLIDER) {
+					//衝突しているとき
+					CVector adjust;//調整用ベクトル
+					if (CCollider::Collision(m, o)) {
+						mColliderCount = 10;
+					}
+				}
+	        }
+			else if (o->mpParent->mTag == EENEMY2) {
+				if (o->mTag == CCollider::EENEMY2COLLIDER) {
+					//衝突しているとき
+					CVector adjust;//調整用ベクトル
+					if (CCollider::Collision(m, o)) {
+						mColliderCount = 10;
+					}
+				}
+
+
+			}
+
+				
+
+		}
+
+
+	}
+	
+
+
 	
 }
 
@@ -345,7 +397,7 @@ void CPlayer::TaskCollision() {
 	CCollisionManager::Get()->Collision(&mLine, COLLISIONRANGE);
 	CCollisionManager::Get()->Collision(&mLine2, COLLISIONRANGE);
 	CCollisionManager::Get()->Collision(&mLine3, COLLISIONRANGE);
-
+	CCollisionManager::Get()->Collision(&mCollider, COLLISIONRANGE);
 }
 void CPlayer::Render() {
 	//親の描画処理
