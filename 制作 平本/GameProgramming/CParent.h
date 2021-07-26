@@ -14,30 +14,14 @@ private:
 	CCharacter* mpParent;
 	//コライダ
 	CCollider mCollider;
-
-    int mRotationCountFirst;
-	int mRotationCount;
-	int mRotationCount2;
-	int mRotationCount3;
-	int mRotationCount4;
-	int mStamina2;
+	CVector mInitPose;
+   
 public:
 	CChild(CCharacter* parent);
-	
+	void CChild::Collision(CCollider* m, CCollider* o);
 	void Update();
+	void CChild::TaskCollision();
 };
 
-//親クラス
-class CParent : public CCharacter
-{
-private:
-	static CModel mModel;
-	static int sCount;
-	
-public:
-	CParent();
-	
-	void Update();
-};
 
 #endif

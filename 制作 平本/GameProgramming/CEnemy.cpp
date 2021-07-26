@@ -12,10 +12,10 @@
 //CEnemy（モデル、位置、回転、拡縮)
 //&mMatrix=敵
 CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
-	:mCollider1(this, &mMatrix, CVector(1.0f, 1.0f, 0.0f), 0.8f)
-	, mCollider2(this, &mMatrix, CVector(0.0f, 1.0f, 5.0f), 0.8f)
-	, mCollider3(this, &mMatrix, CVector(-1.0f, 1.0f, -7.0f), 0.8f)
-	, mColSearch(this, &mMatrix, CVector(0.0f, 0.0f, 100.0f), 200.0f)
+	:mCollider1(this, &mMatrix, CVector(-0.5f, 1.0f, 0.0f), 4.0f)
+	, mCollider2(this, &mMatrix, CVector(-0.5f, 1.0f, -1.0f), 4.0f)
+	, mCollider3(this, &mMatrix, CVector(-0.5f, 1.0f, -2.0f), 4.0f)
+	, mColSearch(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 200.0f)
 	, mpPlayer(nullptr)
 	, mFireCount(0)
 	,mHp(HP)
@@ -34,7 +34,7 @@ CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
 	CTaskManager::Get()->Add(this);//追加する
 	mPoint = mPosition + CVector(0.0f, 0.0f, 30.0f) * mMatrixRotate;
 	CTransform::Update();//行列の更新
-
+	mTag = EENEMY;
 	mColSearch.mTag = CCollider::ESEARCH;
 	mCollider1.mTag = CCollider::EENEMYCOLLIDER1;
 	mCollider2.mTag = CCollider::EENEMYCOLLIDER1;
@@ -104,10 +104,8 @@ void CEnemy::Update() {
 	if (mHp <= -100) {
 		mEnabled = false;
 	}
-
 }
 void CEnemy::Collision(CCollider* m, CCollider* o) {
-	
 	//自分がサーチ用のとき
 	if (m->mTag == CCollider::ESEARCH) {
 		//相手が弾コライダのとき
@@ -123,8 +121,8 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 		}
 		return;
 	}
-
 	if (m->mType == CCollider::ESPHERE) {
+		
 		if (o->mType == CCollider::ESPHERE) {
 			//相手が武器のとき、
 			if (o->mpParent->mTag == EWEAPON) {
@@ -136,11 +134,8 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 			}
 		}
 		return;
-	}
-	//相手のコライダタイプの判定
-	switch (o->mType) {
-	case CCollider::ETRIANGLE://三角コライダのとき
-				CVector adjust;//調整値
+        if (o->mType == CCollider::ETRIANGLE) {
+                CVector adjust;//調整値
 				//三角コライダと球コライダの衝突判定
 				//adjust、、、調整値
 				if (CCollider::CollisionTriangleSphere(o, m, &adjust))
@@ -148,8 +143,11 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 					//衝突しない位置まで戻す
 					mPosition = mPosition + adjust;
 				}
-				break;
+				
+	    }
+		return;
 	}
+	
 
 
 	

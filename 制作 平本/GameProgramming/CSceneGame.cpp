@@ -23,36 +23,41 @@
 void CSceneGame::Init()
 
 {
+
     mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
-    mModelc5.Load("Car.obj", "Car.mtl");
-
-    int  map[10][10] =
-    {
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,1,1,1,1,1,1,1,1,0},
-        {0,1,0,0,0,0,0,0,1,0},
-        {0,1,0,0,0,0,0,0,1,0},
-        {0,1,0,0,0,0,0,0,1,0},
-        {0,1,0,0,0,0,0,0,1,0},
-        {0,1,0,0,0,0,0,0,1,0},
-        {0,1,1,1,1,1,1,1,1,0},
-        {0,0,0,0,0,0,0,0,0,0},
-    };
-    for (int j = 0; j < 10; j++) {
-        for (int i = 0; i < 10; i++) {
-            if (map[i][j] == 1) {
+    mModelc5.Load("mini.obj", "mini.mtl");
+   
 
 
-               new CEnemy2(CVector(i*5.0f, 1.0f, j*10.0f) * mBackGroundMatrix,
-                    CVector(), CVector(0.1f, 0.1f, 0.1f));
+        int  map[10][10] =
+        {
+            {0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,0,0,0,0,0,0,0,0,0},
+        };
+
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < 10; i++) {
+                if (map[i][j] == 1) {
+
+
+                    new CEnemy2(CVector(i * 5.0f, 1.0f, j * 10.0f) * mBackGroundMatrix,
+                        CVector(), CVector(1.1f, 1.1f, 1.1f));
+
+                }
+
+
 
             }
-
-
-
         }
-    }
+    
     //初期化・・・あらかじめ値を代入しておくこと
     mEye = CVector(1.0f, 2.0f, 3.0f);//X軸、Y軸、Z軸の初期化（右斜め上）
     //モデルファイルの入力
@@ -82,7 +87,7 @@ void CSceneGame::Init()
    //敵の生成
    new CEnemy(&mModelc5,
        CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-       CVector(), CVector(1.0f, 1.0f, 1.0f));
+       CVector(), CVector(5.0f, 5.0f, 5.0f));
    
        new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
            CVector(), CVector(0.1f, 0.1f, 0.1f));
@@ -108,13 +113,14 @@ void CSceneGame::Init()
 
    //背景モデルから三角コライダの生成
    //親インスタンスと親行列はなし
-   //mColliderMesh.Set(NULL, &mBackGroundMatrix , &mBackGround);
+   mColliderMesh.Set(NULL, &mBackGroundMatrix , &mBackGround);
 
   
 }
 
 //頂点１，頂点２，頂点３，法線データの作成
 void CSceneGame::Update() { 
+   
     //タスクマネージャー（弾）の更新
   CTaskManager::Get()->Update();
 

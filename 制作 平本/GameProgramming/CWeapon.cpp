@@ -28,8 +28,6 @@ CWeapon::CWeapon(CModel* model, CVector position, CVector rotation, CVector scal
 	mPosition = position;//ˆÊ’u
 	mRotation = rotation;//‰ñ“]
 	mScale = scale; //Šgk
-	mCollider.mTag = CCollider::EWEAPON;
-	mTag = EWEAPON;
 	mModelW.Load("Weapon.obj", "Weapon.mtl");
 	CTaskManager::Get()->Remove(this);//íœ‚µ‚Ä
 	CTaskManager::Get()->Add(this);//’Ç‰Á‚·‚é
