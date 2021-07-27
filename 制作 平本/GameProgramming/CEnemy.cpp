@@ -36,9 +36,9 @@ CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
 	CTransform::Update();//行列の更新
 	mTag = EENEMY;
 	mColSearch.mTag = CCollider::ESEARCH;
-	mCollider1.mTag = CCollider::EENEMYCOLLIDER1;
-	mCollider2.mTag = CCollider::EENEMYCOLLIDER1;
-	mCollider3.mTag = CCollider::EENEMYCOLLIDER1;
+	mCollider1.mTag = CCollider::EENEMYCOLLIDER;
+	mCollider2.mTag = CCollider::EENEMYCOLLIDER;
+	mCollider3.mTag = CCollider::EENEMYCOLLIDER;
 }
 void CEnemy::Update() {
 	//左向き（X軸）のベクトルを求める

@@ -297,6 +297,7 @@ void CPlayer::Update() {
 		mColliderCount--;
 		//mPosition.mZ -= mColliderCount;
 		//mPosition.mY += mColliderCount;
+		mPosition = mPosition + mCollisionEnemy* mColliderCount;
 	}
 	//重力
 	if (mPosition.mY > 0.0f) {
@@ -359,6 +360,10 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 					CVector adjust;//調整用ベクトル
 					if (CCollider::Collision(m, o)) {
 						mColliderCount = 10;
+						mCollisionEnemy=mPosition - o->mpParent->mPosition;
+						mCollisionEnemy.mY = 0;
+						mCollisionEnemy = mCollisionEnemy.Normalize();
+						
 					}
 				}
 	        }
@@ -368,6 +373,10 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 					CVector adjust;//調整用ベクトル
 					if (CCollider::Collision(m, o)) {
 						mColliderCount = 10;
+						mCollisionEnemy = mPosition - o->mpParent->mPosition;
+						mCollisionEnemy.mY = 0;
+						mCollisionEnemy = mCollisionEnemy.Normalize();
+
 					}
 				}
 

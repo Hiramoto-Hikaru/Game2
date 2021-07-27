@@ -48,7 +48,7 @@ void CSceneGame::Init()
                 if (map[i][j] == 1) {
 
 
-                    new CEnemy2(CVector(i * 5.0f, 1.0f, j * 10.0f) * mBackGroundMatrix,
+                    new CEnemy2(CVector(i * 5.0f, 0.0f, j * 10.0f) * mBackGroundMatrix,
                         CVector(), CVector(1.1f, 1.1f, 1.1f));
 
                 }
@@ -74,7 +74,7 @@ void CSceneGame::Init()
     //ägëÂèkè¨çsóÒ
    mPlayer.mScale = CVector(0.1f, 0.1f, 0.1f);
    //à íuç¿ïW
-   mPlayer.mPosition = CVector(0.0f, 0.0f, 1.0f) *mBackGroundMatrix;
+   mPlayer.mPosition = CVector(0.0f, 1.0f, 1.0f) *mBackGroundMatrix;
     //âÒì]çsóÒ
    mPlayer.mRotation = CVector(0.0f, 180.0f, 0.0f);
 

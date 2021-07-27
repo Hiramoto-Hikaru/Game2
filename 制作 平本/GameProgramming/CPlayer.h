@@ -36,6 +36,7 @@ public:
     static int mSpaceCount2;
     static int mSpaceCount3;
     static int mWeaponCount;
+    CVector mCollisionEnemy;
     int mCount;
     static int mAction1;
     static int mAction2;
