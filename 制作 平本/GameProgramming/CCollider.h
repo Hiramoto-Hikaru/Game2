@@ -34,9 +34,8 @@ public:
 		EPLAYERCOLLIDER,
 		EBODY,//本体用
 		ESEARCH,//サーチ用
-		
+		EITEMCCOLLIDER,
 	    EENEMYCOLLIDER,
-		
 		EENEMY2COLLIDER,
 	};
 	ETag mTag;

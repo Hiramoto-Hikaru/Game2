@@ -20,6 +20,8 @@
 #include"CColliderMesh.h"
 #include"CEnemy2.h"
 #include"CWeapon.h"
+#include"CItem.h"
+
 void CSceneGame::Init()
 
 {
@@ -34,11 +36,11 @@ void CSceneGame::Init()
             {0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0},
             {0,1,1,1,1,1,1,1,1,0},
-            {0,1,0,0,0,0,0,0,1,0},
-            {0,1,0,0,0,0,0,0,1,0},
-            {0,1,0,0,0,0,0,0,1,0},
-            {0,1,0,0,0,0,0,0,1,0},
-            {0,1,0,0,0,0,0,0,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
+            {0,1,1,1,1,1,1,1,1,0},
             {0,1,1,1,1,1,1,1,1,0},
             {0,0,0,0,0,0,0,0,0,0},
         };
@@ -47,14 +49,11 @@ void CSceneGame::Init()
             for (int i = 0; i < 10; i++) {
                 if (map[i][j] == 1) {
 
-
+                   
                     new CEnemy2(CVector(i * 5.0f, 0.0f, j * 10.0f) * mBackGroundMatrix,
-                        CVector(), CVector(1.1f, 1.1f, 1.1f));
-
+                        CVector(), CVector(2.1f, 2.1f, 2.1f));
+                    //CEnemy2::mEnemyCount++;
                 }
-
-
-
             }
         }
     
@@ -64,7 +63,7 @@ void CSceneGame::Init()
     //あらかじめ準備されたテクスチャのファイルを設定
     mModel.Load("Player.obj", "Player.mtl");
     mBackGround.Load("sky.obj", "sky.mtl");
-
+    mModelI.Load("eyeball.obj", "eyeball.mtl");
     CMatrix matrix;
     matrix.Print();
  //mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
@@ -83,19 +82,14 @@ void CSceneGame::Init()
    //敵機のインスタンス作成
    //CEnemy（モデル、位置、回転、拡縮)
    //&,,,ポインタ取得
-   
+   new CItem(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+       CVector(), CVector(1.0f, 1.0f, 1.0f));
    //敵の生成
    new CEnemy(&mModelc5,
        CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(5.0f, 5.0f, 5.0f));
    
-       new CEnemy2(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-           CVector(), CVector(0.1f, 0.1f, 0.1f));
-     
- 
-   new CEnemy2(CVector(5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-       CVector(), CVector(0.1f, 0.1f, 0.1f));
-
+   
    //ビルボードの生成
    new CBillBoard(CVector(-6.0f, 3.0f, -10.0f), 1.0f, 1.0f);
 

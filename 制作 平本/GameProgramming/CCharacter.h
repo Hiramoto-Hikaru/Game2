@@ -23,9 +23,9 @@ public:
 		EZERO,//初期値
 		EPLAYER,//プレイヤー
 		EENEMY,//敵
-		EWEAPON,
-		EENEMY2,
-		
+		EWEAPON,//武器
+		EENEMY2,//敵２
+		EITEM,//アイテム
 		EBULLETPLAYER,//プレイヤーの弾
 		EBULLETENEMY,//敵の弾
 	};

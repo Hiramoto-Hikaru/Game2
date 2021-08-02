@@ -10,6 +10,7 @@
 #include"CUtil.h"
 #include"CText.h"
 #include"CEffect.h"
+#include"CEnemy2.h"
 #define G 1.0f
 
 CMatrix Matrix;
@@ -359,7 +360,7 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 					//衝突しているとき
 					CVector adjust;//調整用ベクトル
 					if (CCollider::Collision(m, o)) {
-						mColliderCount = 10;
+						mColliderCount = 5;
 						mCollisionEnemy=mPosition - o->mpParent->mPosition;
 						mCollisionEnemy.mY = 0;
 						mCollisionEnemy = mCollisionEnemy.Normalize();
@@ -372,7 +373,7 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 					//衝突しているとき
 					CVector adjust;//調整用ベクトル
 					if (CCollider::Collision(m, o)) {
-						mColliderCount = 10;
+						mColliderCount = 5;
 						mCollisionEnemy = mPosition - o->mpParent->mPosition;
 						mCollisionEnemy.mY = 0;
 						mCollisionEnemy = mCollisionEnemy.Normalize();
@@ -414,10 +415,14 @@ void CPlayer::Render() {
 	//2Dの描画開始
 	CUtil::Start2D(-400, 400, -300, 300);
 	//描画色の設定（緑色の半透明）
-	glColor4f(0.0f, 1.0f, 0.0f, 0.4f);
+	glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
 	//文字列編集エリアの作成
 	char buf[64];
-
+	//Y座標の表示
+	//文字列の設定
+	//sprintf(buf, "ENEMY:%7.2d", CEnemy2::mEnemyCount);
+	//文字列の描画
+	//mText.DrawString(buf, 0, 150, 8, 16);
 	//Y座標の表示
 	//文字列の設定
 	sprintf(buf, "ACTION1:%7.2d", mAction1);

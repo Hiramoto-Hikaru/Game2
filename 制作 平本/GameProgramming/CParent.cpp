@@ -1,6 +1,7 @@
 #include "CParent.h"
 #include "Ckey.h"
 #include"CPlayer.h"
+#include"CItem.h"
 #define INIT_POSE CVector(0.0f, 0.0f, 1.0f) //‰Šú‚ÌŽp¨
 #define VELOCITY CVector(0.0f, 0.0f, 2.0f) //ˆÚ“®‘¬“x
 #define ROTATE_V CVector(0.0f, 2.0f, 0.0f) //‰ñ“]‘¬“x
@@ -9,15 +10,11 @@
 
 
 
-/*****************************************************/
-/*  CChild                                           */
-/*****************************************************/
-
 CModel CChild::sModel;
 int CChild::sCount = 0;
 
 CChild::CChild(CCharacter* parent)
-	: mCollider(this, &mMatrix, COLLIDER_POS, 2.0f)
+	: mCollider(this, &mMatrix, CVector(0.0f, 7.0f, 0.0f), 1.0f)
 	
 {
 	mCollider.mTag = CCollider::EWEAPONCOLLIDER;
@@ -33,7 +30,7 @@ CChild::CChild(CCharacter* parent)
 	}
 	mpModel = &sModel;
 	//sCount++;
-	mScale = CVector(5.5f, 5.5f, 5.5f);
+	mScale = CVector(5.5f, 7.5f, 5.5f);
 	mPosition = CVector(0.0f, 1.5f, 0.0f);
 	mRotation = INIT_POSE;
 	CTransform::Update();
@@ -42,7 +39,9 @@ CChild::CChild(CCharacter* parent)
 
 void CChild::Update()
 {
-	
+	if (CItem::mItemCount > 0) {
+		CItem::mItemCount--;
+	}
 	
 	if (CPlayer::mAction1 < 60) {
 		mRotation.mX += 20.0f;

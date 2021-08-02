@@ -7,7 +7,7 @@
 #include "CPlayer.h"
 #include"CEnemy.h"
 #include"CCollisionManager.h"
-
+#include"CItem.h"
 #include"CBillBoard.h"
 #include"CCamera.h"
 #include"CColliderTriangle.h"
@@ -33,6 +33,7 @@ public:
 	//敵モデルのインスタンス（クラスと同じものは使えない）
 	CModel mModelC5;
 	CModel mModelc5;
+	CModel mModelI;
 	
 	//三角コライダの作成
 	CColliderTriangle mColliderTriangle;

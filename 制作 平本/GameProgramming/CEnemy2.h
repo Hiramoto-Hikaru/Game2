@@ -4,7 +4,7 @@
 #include"CCharacter.h"
 //コライダクラスのインクルード
 #include"CCollider.h"
-
+#include"CText.h"
 /*エネミークラス
 キャラクタクラスを継承	*/
 class CEnemy2 :public CCharacter {
@@ -19,6 +19,8 @@ public:
 	int mHp;//体力
 	int mJump;
 	int mJump2;
+	CText mText;
+	static int mEnemyCount;
 	//CEnemy2(位置、回転、拡縮）
 	CEnemy2(const CVector& position, const CVector& rotation, const CVector& scale);
 	CCollider mColSearch;//サーチ用コライダ
@@ -29,5 +31,6 @@ public:
 	void Collision(CCollider* m, CCollider* o);
 	void TaskCollision();
 	CCharacter* mpPlayer;//プレイヤーのポインタ
+	
 };
 #endif

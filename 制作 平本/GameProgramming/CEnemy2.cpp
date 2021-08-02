@@ -2,12 +2,16 @@
 #include"CEffect.h"
 #include"CCollisionManager.h"
 #include"CBullet.h"
+
+#include"CUtil.h"
+#include"CText.h"
 #define OBJ "mini.obj"//モデルのファイル
 #define MTL "mini.mtl"//モデルのマテリアルファイル
 #define HP 3
-#define VELOCITY 0.11f //マクロ
+#define VELOCITY 0.5f //マクロ
 #define JUMP 7.0f
 #define G 1.0f
+int CEnemy2::mEnemyCount = 0;
 CModel CEnemy2::mModel;//モデルデータ作成
 //デフォルトコンストラクタ
 CEnemy2::CEnemy2()
@@ -18,6 +22,7 @@ CEnemy2::CEnemy2()
 	,mHp(HP)
 	,mJump(0)
 	,mJump2(0)
+	
 {
 	mTag = EENEMY2;
 	//モデルが無いときは読み込む
@@ -76,14 +81,15 @@ void CEnemy2::Update() {
 	mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
 	CTransform::Update();//行列更新
 	int r = rand() % 60; //rand()は整数の乱数を返す
-	                    //%180は１８０で割った余りを求める
+	          
+						 //%180は１８０で割った余りを求める
 	if (r == 0) {
 		if (mpPlayer) {
 			mPoint = mpPlayer->mPosition;
 
 		}
 		else {
-			mPoint = mPoint * CMatrix().RotateY(45);
+			mPoint = mPoint * CMatrix().RotateY(80);
 		}
 	}
 	mpPlayer = 0;
@@ -98,6 +104,7 @@ void CEnemy2::Update() {
 	}
 	if (mHp <= -100) {
 		mEnabled = false;
+		mEnemyCount -= 1;
 	}
 	if (mJump > 0) {
      mPosition.mZ -= mJump;

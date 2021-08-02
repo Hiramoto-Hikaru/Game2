@@ -3,10 +3,11 @@
 #include"CCharacter.h"
 #ifndef CITEM_H
 #define CITEM_H
-/*class CItem : public CCharacter {
+class CItem : public CCharacter {
 public:
 	//モデルデータ
 	static CModel mModel;
+	static int mItemCount;
 	//コライダ
 	CCollider mCollider;
 	CItem();
@@ -18,7 +19,7 @@ public:
 	//Collision(コライダ１、コライダ２）
 	void Collision(CCollider* m, CCollider* o);
 	void TaskCollision();
-	CCharacter* mpPlayer;//プレイヤーのポインタ
-
-};*/
+	
+	
+};
 #endif
