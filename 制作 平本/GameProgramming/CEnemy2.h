@@ -20,7 +20,7 @@ public:
 	int mJump;
 	int mJump2;
 	CText mText;
-	static int mEnemyCount;
+	
 	//CEnemy2(位置、回転、拡縮）
 	CEnemy2(const CVector& position, const CVector& rotation, const CVector& scale);
 	CCollider mColSearch;//サーチ用コライダ
@@ -31,6 +31,6 @@ public:
 	void Collision(CCollider* m, CCollider* o);
 	void TaskCollision();
 	CCharacter* mpPlayer;//プレイヤーのポインタ
-	
+	int mEnemyDamage;
 };
 #endif

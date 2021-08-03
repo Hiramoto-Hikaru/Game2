@@ -22,6 +22,7 @@
 #include"CWeapon.h"
 #include"CItem.h"
 #include"CSound.h"
+int CSceneGame::mEnemyCount = 0;
 
 void CSceneGame::Init()
 
@@ -32,6 +33,7 @@ Bgm.Load("BGM.wav");
 Bgm.Repeat();
 
     mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
+    mBackGroundMatrix = mBackGroundMatrix * CMatrix().Scale(0.3f, 0.3f, 0.3f);
     mModelc5.Load("mini.obj", "mini.mtl");
    
 
@@ -55,9 +57,9 @@ Bgm.Repeat();
                 if (map[i][j] == 1) {
 
                    
-                    new CEnemy2(CVector(i * 5.0f, 0.0f, j * 10.0f) * mBackGroundMatrix,
+                    new CEnemy2(CVector(i * -5.0f, 0.0f, j * -10.0f) * mBackGroundMatrix,
                         CVector(), CVector(2.1f, 2.1f, 2.1f));
-                    //CEnemy2::mEnemyCount++;
+                   mEnemyCount++;
                 }
             }
         }
@@ -88,7 +90,7 @@ Bgm.Repeat();
    //CEnemy（モデル、位置、回転、拡縮)
    //&,,,ポインタ取得
    new CItem(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-       CVector(), CVector(5.0f, 5.0f, 5.0f));
+       CVector(), CVector(0.0f, 0.0f, 0.0f));
    //敵の生成
    new CEnemy(&mModelc5,
        CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,

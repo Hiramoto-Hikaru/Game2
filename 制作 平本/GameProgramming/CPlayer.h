@@ -41,6 +41,7 @@ public:
     static int mAction1;
     static int mAction2;
     static int mAction3;
+    int mHp;
     //子のインスタンス
     CChild mChild;
    // CWeapon* Weapon;

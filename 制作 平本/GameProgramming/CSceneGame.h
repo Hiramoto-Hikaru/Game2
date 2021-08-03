@@ -31,6 +31,7 @@ public:
 	//モデルからコライダ生成
       CColliderMesh mColliderMesh;
 	  int mMapCount;
+	  static int mEnemyCount;
 	//敵モデルのインスタンス（クラスと同じものは使えない）
 	CModel mModelC5;
 	CModel mModelc5;

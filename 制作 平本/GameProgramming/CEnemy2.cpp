@@ -2,7 +2,7 @@
 #include"CEffect.h"
 #include"CCollisionManager.h"
 #include"CBullet.h"
-
+#include"CSceneGame.h"
 #include"CUtil.h"
 #include"CText.h"
 #define OBJ "mini.obj"//モデルのファイル
@@ -11,18 +11,18 @@
 #define VELOCITY 0.5f //マクロ
 #define JUMP 7.0f
 #define G 1.0f
-int CEnemy2::mEnemyCount = 0;
 CModel CEnemy2::mModel;//モデルデータ作成
 //デフォルトコンストラクタ
 CEnemy2::CEnemy2()
 //コライダの設定
-	:mCollider(this,&mMatrix,CVector(-0.5f,0.0f,-1.0f),1.0f)
+	:mCollider(this,&mMatrix,CVector(-0.5f,0.0f,-1.0f),2.0f)
+
 	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,100.0f),200.0f)
 	,mpPlayer(0)
 	,mHp(HP)
 	,mJump(0)
 	,mJump2(0)
-	
+	, mEnemyDamage(60)
 {
 	mTag = EENEMY2;
 	//モデルが無いときは読み込む
@@ -104,7 +104,7 @@ void CEnemy2::Update() {
 	}
 	if (mHp <= -100) {
 		mEnabled = false;
-		mEnemyCount -= 1;
+		CSceneGame::mEnemyCount -= 1;
 	}
 	if (mJump > 0) {
      mPosition.mZ -= mJump;
@@ -114,7 +114,7 @@ void CEnemy2::Update() {
 		mPosition.mY += mJump;
 		mJump2--;
 	}
-	if (mPosition.mY > 1.0f) {
+	if (mPosition.mY > 2.0f) {
       mPosition.mY -= G;
 	}
 }
@@ -141,7 +141,10 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 			if (o->mpParent->mTag == EWEAPON) {
 				//衝突しているとき
 				if (CCollider::Collision(m, o)) {
-					new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
+					//15フレームごとにエフェクト
+					if (mEnemyDamage % 10 == 0) {
+						new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
+					}
 					mJump = JUMP;
 					mJump2 = JUMP;
 					mHp--;

@@ -14,7 +14,7 @@ CModel CChild::sModel;
 int CChild::sCount = 0;
 
 CChild::CChild(CCharacter* parent)
-	: mCollider(this, &mMatrix, CVector(0.0f, 7.0f, 0.0f), 1.0f)
+	: mCollider(this, &mMatrix, CVector(0.0f, 7.0f, 0.0f), 2.0f)
 	
 {
 	mCollider.mTag = CCollider::EWEAPONCOLLIDER;
@@ -35,18 +35,18 @@ CChild::CChild(CCharacter* parent)
 	mRotation = INIT_POSE;
 	CTransform::Update();
 
-	if (CItem::mItemCount > 0) {
-        CItem::mItemCount--;
-		
-		mCollider.mRadius = 5.0;
-		
-	}
 }
 
 
 void CChild::Update()
 {
 	
+	if (CItem::mItemCount > 0) {
+        CItem::mItemCount--;
+		
+		mCollider.mRadius = 5.0;
+		
+	}
 	if (CPlayer::mAction1 < 60) {
 		mRotation.mX += 20.0f;
 		CPlayer::mAction1++;
@@ -68,6 +68,7 @@ void CChild::Update()
 		CPlayer::mAction3++;
 	}
 	else if (CPlayer::mAction3 < 60) {
+		mRotation.mX += 20.0f;
         mRotation.mZ += 20.0f;
 		CPlayer::mAction3++;
 		
