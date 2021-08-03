@@ -38,18 +38,21 @@ void CItem::Update() {
 mRotation.mY++;
 }
 void CItem::Collision(CCollider* m, CCollider* o) {
-	if (m->mType == CCollider::ESPHERE) {
+	switch (m->mType) {
+	case CCollider::ESPHERE:
 		if (o->mType == CCollider::ESPHERE) {
-			//相手が武器のとき、
 			if (o->mpParent->mTag == EPLAYER) {
+
 				//衝突しているとき
 				if (CCollider::Collision(m, o)) {
 					mItemCount = 600;
 					mEnabled = false;
 				}
+
 			}
 		}
 	}
+	
 }
 void CItem::TaskCollision() {
 	//コライダの優先度変更

@@ -21,10 +21,15 @@
 #include"CEnemy2.h"
 #include"CWeapon.h"
 #include"CItem.h"
+#include"CSound.h"
 
 void CSceneGame::Init()
 
 {
+//サウンド(wav)ファイルの読み込み
+Bgm.Load("BGM.wav");
+//サウンドファイルの繰り返し再生
+Bgm.Repeat();
 
     mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
     mModelc5.Load("mini.obj", "mini.mtl");
@@ -83,7 +88,7 @@ void CSceneGame::Init()
    //CEnemy（モデル、位置、回転、拡縮)
    //&,,,ポインタ取得
    new CItem(CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
-       CVector(), CVector(1.0f, 1.0f, 1.0f));
+       CVector(), CVector(5.0f, 5.0f, 5.0f));
    //敵の生成
    new CEnemy(&mModelc5,
        CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
@@ -159,18 +164,6 @@ void CSceneGame::Update() {
     {
         mEye.mY -= 0.1f;
     }
-    //視点の設定
-  //ｍEyeを付け加えて操作可能にする
-    //glutLookAt(視点X,視点Y,視点Z,中心X,中心Y，中心Z,上向X,上向Y,上向Z,）
-    //上から下を見下ろすような視点になる
-    
-//transモデル
-   /* CTransform trans;//変換行列インスタンスの作成
-    trans.mPosition = CVector(0.5f, 1.8f, 0.5f);//位置の設定
-    trans.mRotation = CVector(-10.0f, -20.0f, -30.0f);//回転の設定
-    trans.mScale = CVector(0.1f, 0.1f, 0.1f);//拡大縮小の設定
-    trans.Update(); // 行列の更新
-    mModel.Render(trans.mMatrix);*/
    
   
     //カメラのパラメータ作成

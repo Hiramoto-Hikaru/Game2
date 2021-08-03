@@ -34,14 +34,18 @@ CChild::CChild(CCharacter* parent)
 	mPosition = CVector(0.0f, 1.5f, 0.0f);
 	mRotation = INIT_POSE;
 	CTransform::Update();
+
+	if (CItem::mItemCount > 0) {
+        CItem::mItemCount--;
+		
+		mCollider.mRadius = 5.0;
+		
+	}
 }
 
 
 void CChild::Update()
 {
-	if (CItem::mItemCount > 0) {
-		CItem::mItemCount--;
-	}
 	
 	if (CPlayer::mAction1 < 60) {
 		mRotation.mX += 20.0f;

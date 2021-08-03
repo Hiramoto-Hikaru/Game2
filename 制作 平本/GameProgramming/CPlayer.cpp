@@ -308,36 +308,7 @@ void CPlayer::Update() {
 	CTransform::Update();
 }	
 void CPlayer::Collision(CCollider* m, CCollider* o) {
-	if (m->mType == CCollider::ESPHERE) {
-		//プレイヤーのとき、
-		if (m->mpParent->mTag == EPLAYER) {
-			if (o->mTag == CCollider::EPLAYERCOLLIDER) {
-				if (o->mpParent->mTag == EENEMY) {
-					if (o->mTag == CCollider::EENEMYCOLLIDER) {
-
-						//衝突しているとき
-						if (CCollider::Collision(m, o)) {
-							//mColliderCount = 10;
-						}
-					}
-				}
-				else if (o->mpParent->mTag == EENEMY2) {
-					if (o->mTag == CCollider::EENEMY2COLLIDER) {
-						//衝突しているとき
-						if (CCollider::Collision(m, o)) {
-							//mColliderCount = 10;
-						}
-					}
-
-
-
-
-				}
-
-			}
-		}
-
-	}
+	
 	//自身のコライダの設定
 	switch (m->mType) {
 	case CCollider::ELINE://線分コライダ

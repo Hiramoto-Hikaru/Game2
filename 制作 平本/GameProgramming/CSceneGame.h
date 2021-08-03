@@ -12,6 +12,7 @@
 #include"CCamera.h"
 #include"CColliderTriangle.h"
 #include"CColliderMesh.h"
+#include"CSound.h"
 /*
 ゲームのシーン
 */
@@ -26,7 +27,7 @@ public:
 	CMatrix mMatrix;//合成行列
 	CMatrix mBackGroundMatrix;
 	CPlayer mPlayer;
-	
+	CSound Bgm;
 	//モデルからコライダ生成
       CColliderMesh mColliderMesh;
 	  int mMapCount;
