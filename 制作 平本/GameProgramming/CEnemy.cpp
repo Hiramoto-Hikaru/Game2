@@ -6,8 +6,8 @@
 #include"CBullet.h"
 #include"CCollisionManager.h"
 #define COLLISIONRANGE 30
-#define HP 10
-#define VELOCITY 0.11f //マクロ
+#define HP 500
+#define VELOCITY 0.1f //マクロ
 //コンストラクタ
 //CEnemy（モデル、位置、回転、拡縮)
 //&mMatrix=敵
@@ -15,10 +15,11 @@ CEnemy::CEnemy(CModel* model, CVector position, CVector rotation, CVector scale)
 	:mCollider1(this, &mMatrix, CVector(-0.5f, 1.0f, 0.0f), 4.0f)
 	, mCollider2(this, &mMatrix, CVector(-0.5f, 1.0f, -1.0f), 4.0f)
 	, mCollider3(this, &mMatrix, CVector(-0.5f, 1.0f, -2.0f), 4.0f)
-	, mColSearch(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 200.0f)
+	, mColSearch(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 500.0f)
 	, mpPlayer(nullptr)
 	, mFireCount(0)
 	,mHp(HP)
+	,mDamageCount(0)
 {
 	
 
@@ -92,18 +93,22 @@ void CEnemy::Update() {
 	mpPlayer = 0;
 	if (mHp <= 0) {
 		mHp--;
+		if (mHp <= -100) {
 		mEnabled = false;
+	    }
 		//15フレームごとにエフェクト
 		if (mHp % 15 == 0) {
 			//エフェクト生成
-			//new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
+			new CEffect(mPosition, 30.0f, 30.0f, "exp.tga", 4, 4, 2);
+			//new CEffect(mPosition, 30.0f, 30.0f, "Attack.tga", 2, 6, 2);
 		}
 		CTransform::Update();
 		return;
 	}
-	if (mHp <= -100) {
-		mEnabled = false;
+	if (mDamageCount > 0) {
+		mDamageCount--;
 	}
+	
 }
 void CEnemy::Collision(CCollider* m, CCollider* o) {
 	//自分がサーチ用のとき
@@ -128,20 +133,31 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 			if (o->mpParent->mTag == EWEAPON) {
 				//衝突しているとき
 				if (CCollider::Collision(m, o)) {
-					new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
-					mHp--;
+					new CEffect(mPosition, 15.0f, 15.0f, "exp.tga", 4, 4, 2);
+					//if (mDamageCount = 0) {
+						mHp--;
+						mDamageCount = 1;
+					//}
+					
 				}
 			}
 		}
-		return;
+	
+
         if (o->mType == CCollider::ETRIANGLE) {
                 CVector adjust;//調整値
 				//三角コライダと球コライダの衝突判定
 				//adjust、、、調整値
 				if (CCollider::CollisionTriangleSphere(o, m, &adjust))
 				{
-					//衝突しない位置まで戻す
-					mPosition = mPosition + adjust;
+					if (mPosition.mX + mPosition.mZ > 0) {
+						//衝突しない位置まで戻す
+						mPosition = mPosition - adjust;
+					}
+					else {
+						//衝突しない位置まで戻す
+						mPosition = mPosition + adjust;
+					}
 				}
 				
 	    }

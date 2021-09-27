@@ -20,7 +20,10 @@ public:
 	int mJump;
 	int mJump2;
 	CText mText;
-	
+	int mMove;
+	int mMove2;
+	int mColliderCount;
+	CVector mCollisionEnemy;
 	//CEnemy2(位置、回転、拡縮）
 	CEnemy2(const CVector& position, const CVector& rotation, const CVector& scale);
 	CCollider mColSearch;//サーチ用コライダ

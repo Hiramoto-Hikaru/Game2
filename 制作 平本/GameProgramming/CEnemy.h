@@ -21,7 +21,7 @@ int mFireCount;
 //Õ“Ëˆ—
 //Collision(CCollider*m,CCollider*o)
 void Collision(CCollider* m, CCollider* o);
-
+int mDamageCount;
 void TaskCollision();
 
 }; 

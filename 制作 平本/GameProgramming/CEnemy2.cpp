@@ -7,22 +7,25 @@
 #include"CText.h"
 #define OBJ "mini.obj"//モデルのファイル
 #define MTL "mini.mtl"//モデルのマテリアルファイル
-#define HP 3
+#define HP 1
 #define VELOCITY 0.5f //マクロ
-#define JUMP 7.0f
-#define G 1.0f
+
+#define JUMP 4.0f
+#define G 0.1f
 CModel CEnemy2::mModel;//モデルデータ作成
 //デフォルトコンストラクタ
 CEnemy2::CEnemy2()
 //コライダの設定
-	:mCollider(this,&mMatrix,CVector(-0.5f,0.0f,-1.0f),2.0f)
-
-	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,100.0f),200.0f)
+	:mCollider(this,&mMatrix,CVector(-0.5f,0.0f,-1.0f),1.0f)
+	,mColSearch(this,&mMatrix,CVector(0.0f,0.0f,0.0f),500.0f)
 	,mpPlayer(0)
 	,mHp(HP)
 	,mJump(0)
 	,mJump2(0)
 	, mEnemyDamage(60)
+	,mMove(0)
+	,mMove2(0)
+	, mColliderCount(0)
 {
 	mTag = EENEMY2;
 	//モデルが無いときは読み込む
@@ -77,12 +80,24 @@ void CEnemy2::Update() {
 		else if (dx < -margin) {
 		mRotation.mY -= 1.0f;//右へ回転
         }
-	//移動する
-	mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
+	
 	CTransform::Update();//行列更新
+	
+		if (mMove <= 300) {
+       
+		mMove++;
+		}
+		if (mMove >= 180) {
+        //移動する
+		mPosition = mPosition + CVector(0.0f, 0.0f, VELOCITY) * mMatrixRotate;
+		}
+		if (mMove >= 300) {
+			mMove = 0;
+		}
+		
 	int r = rand() % 60; //rand()は整数の乱数を返す
 	          
-						 //%180は１８０で割った余りを求める
+    //%180は１８０で割った余りを求める
 	if (r == 0) {
 		if (mpPlayer) {
 			mPoint = mpPlayer->mPosition;
@@ -107,15 +122,27 @@ void CEnemy2::Update() {
 		CSceneGame::mEnemyCount -= 1;
 	}
 	if (mJump > 0) {
-     mPosition.mZ -= mJump;
+
+     //mPosition.mZ -= mJump;
 	 mJump--;
+	}
+	//吹き飛ぶ
+	if (mColliderCount > 0) {
+		mColliderCount--;
+		
+		mPosition = mPosition + mCollisionEnemy * mColliderCount;
 	}
 	if (mJump2 > 0) {
 		mPosition.mY += mJump;
+		
 		mJump2--;
 	}
-	if (mPosition.mY > 2.0f) {
+	if (mPosition.mY > 1.0f) {
       mPosition.mY -= G;
+      
+	}
+	if (mPosition.mY > 4.0f) {
+     mRotation.mX += 20.0f;
 	}
 }
 //Collision(コライダ１，コライダ２，）
@@ -141,10 +168,15 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 			if (o->mpParent->mTag == EWEAPON) {
 				//衝突しているとき
 				if (CCollider::Collision(m, o)) {
+					mColliderCount = 5;
+					mCollisionEnemy = mPosition - o->mpParent->mPosition;
+					mCollisionEnemy.mY = 0;
+					mCollisionEnemy = mCollisionEnemy.Normalize();
 					//15フレームごとにエフェクト
 					if (mEnemyDamage % 10 == 0) {
 						new CEffect(o->mpParent->mPosition, 3.0f, 3.0f, "Attack.tga", 2, 6, 2);
 					}
+					
 					mJump = JUMP;
 					mJump2 = JUMP;
 					mHp--;
@@ -157,8 +189,22 @@ void CEnemy2::Collision(CCollider* m, CCollider* o) {
 			//adjust、、、調整値
 			if (CCollider::CollisionTriangleSphere(o, m, &adjust))
 			{
-				//衝突しない位置まで戻す
-				mPosition = mPosition + adjust;
+				if (mPosition.mX + mPosition.mZ > 0) {
+                //衝突しない位置まで戻す
+				mPosition = mPosition - adjust;
+				if (mJump > 0) {
+					mPosition = mPosition - adjust ;
+				}
+				}
+				else {
+					//衝突しない位置まで戻す
+					mPosition = mPosition + adjust;
+					if (mJump > 0) {
+						mPosition = mPosition + adjust;
+					}
+				}
+
+				
 			}
 		}
 		return;

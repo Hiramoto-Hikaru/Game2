@@ -42,13 +42,13 @@ Bgm.Repeat();
         {
             {0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
-            {0,1,1,1,1,1,1,1,1,0},
+            {0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0},
+            {0,0,1,1,1,1,1,1,0,0},
+            {0,0,1,1,1,1,1,1,0,0},
+            {0,0,1,1,1,1,1,1,0,0},
+            {0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0},
         };
 
@@ -57,8 +57,8 @@ Bgm.Repeat();
                 if (map[i][j] == 1) {
 
                    
-                    new CEnemy2(CVector(i * -5.0f, 0.0f, j * -10.0f) * mBackGroundMatrix,
-                        CVector(), CVector(2.1f, 2.1f, 2.1f));
+                    new CEnemy2(CVector(i * 20.0f, 10.0f, j * 20.0f) * mBackGroundMatrix,
+                        CVector(), CVector(1.5f, 1.5f, 1.5f));
                    mEnemyCount++;
                 }
             }
@@ -70,7 +70,7 @@ Bgm.Repeat();
     //あらかじめ準備されたテクスチャのファイルを設定
     mModel.Load("Player.obj", "Player.mtl");
     mBackGround.Load("sky.obj", "sky.mtl");
-    mModelI.Load("eyeball.obj", "eyeball.mtl");
+    mModelI.Load("Coca_Cola.obj", "Coca_Cola.mtl");
     CMatrix matrix;
     matrix.Print();
  //mBackGroundMatrix.Translate(0.0f, 0.0f, -500.0f);
@@ -93,7 +93,7 @@ Bgm.Repeat();
        CVector(), CVector(0.0f, 0.0f, 0.0f));
    //敵の生成
    new CEnemy(&mModelc5,
-       CVector(-5.0f, 1.0f, -10.0f) * mBackGroundMatrix,
+       CVector(-50.0f, 1.0f, -10.0f) * mBackGroundMatrix,
        CVector(), CVector(5.0f, 5.0f, 5.0f));
    
    

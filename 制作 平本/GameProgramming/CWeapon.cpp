@@ -10,7 +10,7 @@
 #include"CMatrix.h"
 #include"CsceneGame.h"
 #include"CKey.h"
-
+/*
 CWeapon::CWeapon(CModel* model, CVector position, CVector rotation, CVector scale) 
 	
 	: mCollider(this, &mMatrix, CVector(0.0f, 8.0f, 0.0f), 1.5f)
@@ -78,7 +78,7 @@ void CWeapon::Update(){
 		if (mRotation.mX < 90) {
         	mRotation.mX += 90.0f;
 		}
-			mRotation.mY += 20.0f;
+			mRotation.mY += 50.0f;
 			CPlayer::mAction2++;
 		}
  		else if (CPlayer::mAction3 <60) {
@@ -123,5 +123,5 @@ void CWeapon::TaskCollision()
 	CCollisionManager::Get()->Collision(&mCollider, COLLISIONRANGE);
 	
 
-}
+}*/
 

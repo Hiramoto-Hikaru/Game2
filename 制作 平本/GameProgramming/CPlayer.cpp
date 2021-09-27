@@ -91,11 +91,11 @@ void CPlayer::Update() {
 		mSpaceCount3--;
 	}
 	//スタミナ回復
-	if (mStamina <= 400) {
+	if (mStamina < 400) {
 		mStamina++;
 	}
 	if(mHp>0){
-		if (mAction1 >= 60 && mAction2 >= 60 && mAction3 >= 60) {
+		if ( mAction2 >= 60 && mAction3 >= 60) {
 			//前進
 			if (CKey::Push('I')) {
 				mWeaponCount = 0;
@@ -268,18 +268,19 @@ void CPlayer::Update() {
 			}
 		}
 }
-    //左回転
-	 if (CKey::Push('A')) {
-		//Y軸の回転値を増加
-		mRotation2.mY += 3;
-		mRotation.mY += 3;
-	 }
+   
 	//右回転
 	if (CKey::Push('D')) {
 		//Y軸の回転値を減算
 		mRotation2.mY -= 3;
 		mRotation.mY -= 3;
 	}
+     //左回転
+	 if (CKey::Push('A')) {
+		//Y軸の回転値を増加
+		mRotation2.mY += 3;
+		mRotation.mY += 3;
+	 }
 	//上回転
 	if (CKey::Push('S')) {
 		//X軸の回転値を減算

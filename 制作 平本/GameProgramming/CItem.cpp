@@ -3,8 +3,8 @@
 #include"CEffect.h"
 #include"CCollisionManager.h"
 #include"CItem.h"
-#define OBJ "eyeball.obj"
-#define MTL "eyeball.mtl"
+#define OBJ "Coca_Cola.obj"
+#define MTL "Coca_Cola.mtl"
 int CItem::mItemCount = 0;
 CModel CItem::mModel;//モデルデータ作成
 CItem::CItem(const CVector& position, const CVector& rotation, const CVector& scale)
@@ -45,7 +45,7 @@ void CItem::Collision(CCollider* m, CCollider* o) {
 
 				//衝突しているとき
 				if (CCollider::Collision(m, o)) {
-					mItemCount = 600;
+					mItemCount = 1800;
 					mEnabled = false;
 				}
 

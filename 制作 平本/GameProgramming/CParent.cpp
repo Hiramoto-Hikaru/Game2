@@ -47,6 +47,9 @@ void CChild::Update()
 		mCollider.mRadius = 5.0;
 		
 	}
+	else if(CItem::mItemCount <=0)  {
+		mCollider.mRadius = 2.0;
+	}
 	if (CPlayer::mAction1 < 60) {
 		mRotation.mX += 20.0f;
 		CPlayer::mAction1++;
@@ -60,7 +63,7 @@ void CChild::Update()
 			mRotation.mX = 90.0f;
 		}
         CPlayer::mAction2++;
-		mRotation.mY += 20.0f;
+		mRotation.mY += 40.0f;
 	}
 	else if (CPlayer::mAction3 < 3) {
 			
